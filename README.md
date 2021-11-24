@@ -3,8 +3,8 @@
 
 
 ## things
-wm: 13wm
-icons: Fancy-Dark-Icons
-theme: Sweet-Dark-v40 (GTK)
-file manager: Thunar
+wm: 13wm <br>
+icons: Fancy-Dark-Icons <br>
+theme: Sweet-Dark-v40 (GTK) <br>
+file manager: Thunar <br>
 status bar: Polybar
