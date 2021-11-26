@@ -223,8 +223,8 @@ exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
 # WALLPAPER
 exec_always --no-startup-id feh --bg-scale ~/Downloads/bg-1-big.png
 
-# COMPTON
-# exec compton
+# PICOM
+exec_always --no-startup-id picom
 
 # TABS
 # class                 border  backgr. text    indicator child_border
