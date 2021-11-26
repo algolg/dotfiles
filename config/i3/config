@@ -204,7 +204,7 @@ bindsym $mod+Ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0
 # ROUNDED CORNERS
 smart_borders on
 smart_borders no_gaps
-border_radius 10
+#border_radius 10
 for_window [class=".*"] border pixel 0
 
 # QUASI ALTERNATING (FIBONACCI)
