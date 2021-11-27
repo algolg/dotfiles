@@ -53,7 +53,7 @@ padding-right = 1
 module-margin-left = 2
 module-margin-right = 1
 
-font-0 = consolas:pixelsize=14;1
+font-0 = consolas:pixelsize=15;4
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = consolas:pixelsize=12;1
 
@@ -146,7 +146,6 @@ label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
@@ -165,7 +164,7 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
 ; Separator in between workspaces
- label-separator = |
+;label-separator = |
 
 
 [module/mpd]
@@ -261,7 +260,7 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date = " %Y-%m-%d"
+date = "%m-%d"
 
 time = %H:%M:%S
 
@@ -309,7 +308,7 @@ format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
-bar-volume-width = 10
+bar-volume-width = 12
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
 bar-volume-foreground-2 = #55aa55
