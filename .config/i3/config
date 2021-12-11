@@ -36,8 +36,8 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -54,6 +54,10 @@ bindsym $mod+Return exec alacritty
 # bindsym $mod+d exec --no-startup-id dmenu_run
 # bindsym $mod+space exec --no-startup-id rofi -combi-modi window#drun#ssh -theme solarized -font "consolas 10" -show combi
 bindsym $mod+space exec --no-startup-id rofi -show combi
+
+# rofi power menu
+bindsym $mod+l exec --no-startup-id rofi -show power-menu -modi power-menu:rofi-power-menu -font "NotoSansMono Nerd Font Bold 16"
+
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -61,12 +65,6 @@ bindsym $mod+space exec --no-startup-id rofi -show combi
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+a focus left
 bindsym $mod+s focus down
 bindsym $mod+w focus up
@@ -188,8 +186,8 @@ bindsym $mod+r mode "resize"
 #}
 
 # GAP VARIABLE S
-set $top 48
-set $inner 16 
+set $top 44
+set $inner 12 
 set $outer 0
 
 # SET GAPS
@@ -198,14 +196,14 @@ gaps outer $outer
 gaps top $top
 
 # TOGGLE GAPS
-bindsym $mod+g exec compton; gaps inner all set $inner; gaps outer all set $outer
+bindsym $mod+g exec compton; gaps inner all set $inner; gaps outer all set $outer; gaps top all set $top
 bindsym $mod+Ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0
 
 # ROUNDED CORNERS
 smart_borders on
 smart_borders no_gaps
 #border_radius 10
-for_window [class=".*"] border pixel 0
+for_window [class="^.*"] border pixel 0
 
 # QUASI ALTERNATING (FIBONACCI)
 default_orientation vertical 
@@ -217,19 +215,57 @@ bindsym $mod+shift+q split toggle kill
 # bindsym $mod+e layout toggle split; this is already at the top 
 # should already exist but use if split orientation  messes up
 
+# REMOVE TITLEBAR
+default_border pixel 1
+default_floating_border pixel 1
+new_window 1pixel
+
 # POLYBAR
 exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
+bindsym $mod+shift+p exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
 
 # WALLPAPER
 exec_always --no-startup-id feh --bg-scale ~/Downloads/bg-1-big.png
 
 # PICOM
-exec_always --no-startup-id sh $HOME/.config/picom/launch.sh
+exec --no-startup-id sh $HOME/.config/picom/launch.sh
+#bindsym $mod+shift+p exec_always --no-startup-id sh $HOME/.config/picom/launch.sh
+
+# AUDIO
+#exec --no-startup-id $HOME/.config/pulseaudio/launch.sh
+
+# UNDERVOLT
+exec_always --no-startup-id intel-undervolt apply
+
+# BRIGHTNESS
+bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+
+# REMOVE BEEP SOUND
+exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga bell-window-system
+exec --no-startup-id pactl load-module module-x11-bell display=$DISPLAY
+
+# FLOATING WINDOWS
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable, move position 1294 52
+for_window [class="Thunar" instance="thunar"] floating enable
+for_window [class="PureRef" instance="PureRef_78a3a1214a0fe784d48b894409e3630a"] floating enable
+for_window [class="Org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable
+for_window [class="Spotify"] border pixel 0
+
+# BLUE LIGHT FILTER (REDSHIFT)
+#exec_always --no-startup-id redshift -l 34:-118 -g 0.85 -t 5000:3700
+#exec_always redshift -l 34:-118 -g 0.85 -t 5000:3000
+bindsym $mod+Shift+u exec pkill -USR1  redshift
+
+# SCREENSHOTS (Spectacle -> Prntscrn)
+
+# DUNST
+exec_always --no-startup-id sh $HOME/.config/dunst/launch.sh
 
 # TABS
 # class                 border  backgr. text    indicator child_border
-client.focused          #81a2b1 #81a2be #1d1f21 #2e9ef4   #81a2be
-client.focused_inactive #81a2b1 #81a2be #1d1f21 #2e9ef4   #81a2be
+client.focused          #55a4d9 #55a4d9 #1d1f21 #2e9ef4   #55a4d9
+client.focused_inactive #55a4d9 #55a4d9 #1d1f21 #2e9ef4   #55a4d9
 client.unfocused        #1d1f21 #1d1f21 #c5c8c6 #292d2e   #1d1f21 
 font pango:Consolas Bold 16px
 

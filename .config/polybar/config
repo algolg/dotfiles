@@ -18,23 +18,25 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #1D1F21
+background = #14181a
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 	foreground = #C5C8C6
 foreground-alt = #555
 primary = #f0c674
 secondary = #cc6666
-tertiary = #81a2be
+#tertiary = #81a2be
+tertiary = #078be3
+#tertiary = #55acee
 alert = #d54e53
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
-width = 100%:-32
-offset-x = 16
+width = 100%:-24
+offset-x = 12
 offset-y = 12
 
-height = 40
+height = 32
 radius = 10
 
 fixed-center = true
@@ -53,17 +55,24 @@ padding-right = 1
 module-margin-left = 2
 module-margin-right = 1
 
-font-0 = consolas:pixelsize=15;4
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = consolas:pixelsize=12;1
+font-0 = Consolas:style=Bold:pixelsize=15;2
+font-1 = Liberation Sans:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:style=Bold:pixelsize=15;2
+font-3 = NotoSansMono Nerd Font:pixelsize=15;2
+font-4 = Noto Sans Mono CJK JP:style=Bold:pixelsize=16;2
+font-5 = Noto Sans Mono CJK HK:style=Bold:pixelsize=16;2
 
-modules-left = bspwm i3
-modules-center = xwindow
-	modules-right = xkeyboard xbacklight pulseaudio battery temperature date powermenu
+modules-left = i3
+modules-center = now-playing
+modules-right = pulseaudio battery date powermenu
+;backlight-acpi is nice but prob not necessary
 
-tray-position = right
-tray-padding = 2
-tray-background = #0063ff
+tray-position = center
+tray-detached = true
+tray-offset-x = 371
+tray-background = #28292a
+;tray-maxsize = 20
+;tray-background = #0063ff
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -137,7 +146,7 @@ index-sort = true
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
 
 label-mode-padding = 2
 label-mode-foreground = #000
@@ -169,16 +178,30 @@ label-urgent-padding = 2
 
 [module/mpd]
 type = internal/mpd
+host = 127.0.0.1
+port = 6600
+interval = 1
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online-font = 3
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+; Only applies if <icon-X> is used
+icon-play = ⏵
+icon-pause = ⏸
+icon-stop = ⏹
+icon-prev = ⏮
+icon-next = ⏭
+icon-seekb = ⏪
+icon-seekf = ⏩
+icon-consume = ✀
+icon-font = 3
 
+label-song = 𝄞 %artist% - %title%
 label-song-maxlen = 25
 label-song-ellipsis = true
+label-song-font = 3
+
+label-offline = 🎜 mpd is offline
+label-offline-font = 3
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -186,7 +209,7 @@ type = internal/xbacklight
 format = <label> <bar>
 label = BL
 
-bar-width = 10
+bar-width = 11
 bar-indicator = |
 bar-indicator-foreground = #fff
 bar-indicator-font = 2
@@ -227,17 +250,17 @@ format-connected = <ramp-signal> <label-connected>
 format-connected-underline = #9f78e1
 label-connected = %essid%
 
-format-disconnected =
+format-disconnected = /
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 = ─
+ramp-signal-1 = =
+ramp-signal-2 = ≡
+ramp-signal-3 = ≣
+ramp-font = 0
 ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
@@ -258,7 +281,7 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
 date = "%m-%d"
 
@@ -277,7 +300,8 @@ format-volume = <label-volume> <bar-volume>
 label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
+format-muted = <label-muted> <bar-volume>
+label-muted = MUT
 label-muted-foreground = #666
 
 bar-volume-width = 11
@@ -296,6 +320,8 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
+
+click-right = exec pavucontrol --tab=3 &
 
 [module/alsa]
 type = internal/alsa
@@ -329,34 +355,37 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 98
+full-at = 100
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+;format-charging-underline = #ffb52a
+;format-charging-foreground = #55aa55
 
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+format-discharging = <ramp-capacity> <label-discharging>
+;format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+format-full-prefix = " "
+format-full-prefix-font = 3
+format-full-prefix-foreground = #55aa55
+;format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
+ramp-capacity-font = 3
+ramp-capacity-0-foreground = #ff5555
+ramp-capacity-1-foreground = #ff5555
+ramp-capacity-2-foreground = #ffda54
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
 animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
+animation-charging-font = 3
 
 [module/temperature]
 type = internal/temperature
@@ -364,9 +393,9 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+;format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+;format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
@@ -378,33 +407,33 @@ ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
-type = custom/menu
-
-expand-right = true
+type = custom/text
 
 format-spacing = 1
+content = "⏻ "
+content-foreground = #ff5555
+label-font = 3
+click-left = exec rofi -show power-menu -modi power-menu:rofi-power-menu -font "NotoSansMono Nerd Font Bold 16" &
 
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
+[module/now-playing]
+type = custom/script
 
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
+tail = true
+format = <label>
 
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+exec = ~/.config/polybar/scripts/polybar-now-playing
+click-right = "kill -USR1 $(pgrep --oldest --parent %pid%)"
 
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+format-font = 3
+
+[module/polywins]
+type = custom/script
+exec = ~/.config/polybar/scripts/polywins.sh 2>/dev/null
+format = <label>
+label-foreground = ${foreground}
+label = %output%
+label-padding = 1
+tail = true
 
 [settings]
 screenchange-reload = true
