@@ -3,8 +3,8 @@
 
 
 ## things
-wm: 13wm <br>
+wm: 13-gaps-rounded <br>
 icons: Fancy-Dark-Icons <br>
-theme: Sweet-Dark-v40 (GTK) <br>
-file manager: Thunar <br>
+theme: Layan-dark-solid (GTK) <br>
+file manager: Nautilus <br>
 status bar: Polybar
