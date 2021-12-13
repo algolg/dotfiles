@@ -26,7 +26,7 @@ foreground-alt = #555
 primary = #f0c674
 secondary = #cc6666
 #tertiary = #81a2be
-tertiary = #078be3
+tertiary = #55a4d9
 #tertiary = #55acee
 alert = #d54e53
 
@@ -55,7 +55,7 @@ padding-right = 1
 module-margin-left = 2
 module-margin-right = 1
 
-font-0 = Consolas:style=Bold:pixelsize=15;2
+font-0 = Consolas:style=Bold:pixelsize=15;3
 font-1 = Liberation Sans:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:style=Bold:pixelsize=15;2
 font-3 = NotoSansMono Nerd Font:pixelsize=15;2
@@ -293,6 +293,8 @@ format-prefix-foreground = ${colors.foreground-alt}
 label = %date% %time%
 label-foreground = ${colors.tertiary} 
 
+click-right = exec galendae
+
 [module/pulseaudio]
 type = internal/pulseaudio
 
@@ -411,7 +413,7 @@ type = custom/text
 
 format-spacing = 1
 content = "⏻ "
-content-foreground = #ff5555
+content-foreground = #ff3333
 label-font = 3
 click-left = exec rofi -show power-menu -modi power-menu:rofi-power-menu -font "NotoSansMono Nerd Font Bold 16" &
 
