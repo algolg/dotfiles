@@ -17,27 +17,28 @@
 ;==========================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #14181a
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-	foreground = #C5C8C6
+#background = #14181a
+#background-alt = #444444
+#foreground = #C5C8C6
+background = #33444444
+background-alt = #77444444
+foreground = #222222
 foreground-alt = #555
 primary = #f0c674
 secondary = #cc6666
 #tertiary = #81a2be
-tertiary = #55a4d9
+tertiary = #078be3
 #tertiary = #55acee
 alert = #d54e53
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
-width = 100%:-24
-offset-x = 12
-offset-y = 12
+#width = 100%:-24
+#offset-x = 12
+#offset-y = 12
 
 height = 32
-radius = 10
+#radius = 10
 
 fixed-center = true
 override-redirect = true
@@ -55,10 +56,10 @@ padding-right = 1
 module-margin-left = 2
 module-margin-right = 1
 
-font-0 = Consolas:style=Bold:pixelsize=15;3
+font-0 = Consolas:style=Bold:pixelsize=15;2
 font-1 = Liberation Sans:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:style=Bold:pixelsize=15;2
-font-3 = NotoSansMono Nerd Font:pixelsize=15;2
+font-3 = NotoSansMono Nerd Font:pixelsize=16;3
 font-4 = Noto Sans Mono CJK JP:style=Bold:pixelsize=16;2
 font-5 = Noto Sans Mono CJK HK:style=Bold:pixelsize=16;2
 
@@ -70,7 +71,7 @@ modules-right = pulseaudio battery date powermenu
 tray-position = center
 tray-detached = true
 tray-offset-x = 371
-tray-background = #28292a
+tray-background = ${colors.background-alt}
 ;tray-maxsize = 20
 ;tray-background = #0063ff
 

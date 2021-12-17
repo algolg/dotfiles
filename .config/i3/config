@@ -99,7 +99,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+t layout tabbed
 bindsym $mod+y layout stacking
 bindsym $mod+e layout toggle split
-bindsym $mod+shift+f focus parent
+#bindsym $mod+shift+f focus parent
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -186,7 +186,7 @@ bindsym $mod+r mode "resize"
 #}
 
 # GAP VARIABLE S
-set $top 44
+set $top 32
 set $inner 12 
 set $outer 0
 
@@ -197,7 +197,7 @@ gaps top $top
 
 # TOGGLE GAPS
 bindsym $mod+g exec compton; gaps inner all set $inner; gaps outer all set $outer; gaps top all set $top
-bindsym $mod+Ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0
+bindsym $mod+Ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0; gaps top all set 32
 
 # ROUNDED CORNERS
 smart_borders on
@@ -215,17 +215,19 @@ bindsym $mod+shift+q split toggle kill
 # bindsym $mod+e layout toggle split; this is already at the top 
 # should already exist but use if split orientation  messes up
 
-# REMOVE TITLEBAR
+# REMOVE/MODIFY TITLEBAR
 default_border pixel 1
 default_floating_border pixel 1
 new_window 1pixel
+for_window [class=".*"] title_format "%class" 
+# ^ makes sure that the titlebar only has the program's class name
 
 # POLYBAR
 exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
 bindsym $mod+shift+p exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
 
 # WALLPAPER
-exec_always --no-startup-id feh --bg-scale ~/Downloads/bg-1-big.png
+exec_always --no-startup-id feh --bg-scale ~/Downloads/bg-4.png
 
 # PICOM
 exec --no-startup-id sh $HOME/.config/picom/launch.sh
@@ -246,16 +248,20 @@ exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/be
 exec --no-startup-id pactl load-module module-x11-bell display=$DISPLAY
 
 # FLOATING WINDOWS
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable, move position 1294 52
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable, move position 1294 50
 for_window [class="Thunar" instance="thunar"] floating enable
 for_window [class="PureRef" instance="PureRef_78a3a1214a0fe784d48b894409e3630a"] floating enable
 for_window [class="Org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable
 for_window [class="Spotify"] border pixel 0
+for_window [class="Galendae" instance="galendae"] move position 1623 50
 
 # BLUE LIGHT FILTER (REDSHIFT)
 #exec_always --no-startup-id redshift -l 34:-118 -g 0.85 -t 5000:3700
 #exec_always redshift -l 34:-118 -g 0.85 -t 5000:3000
 bindsym $mod+Shift+u exec pkill -USR1  redshift
+
+# PROGRAM OPENING KEYBINDS
+bindsym $mod+Shift+f exec run-or-raise firefox
 
 # SCREENSHOTS (Spectacle -> Prntscrn)
 

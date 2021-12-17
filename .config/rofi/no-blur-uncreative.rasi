@@ -6,9 +6,9 @@
 
 * {
     selected-normal-foreground:  rgba ( 249, 249, 249, 100 % );
-    foreground:                  rgba ( 196, 203, 212, 100 % );
+    foreground:                  rgba ( 136, 136, 136, 100 % );
     normal-foreground:           @foreground;
-    alternate-normal-background: rgba ( 64, 69, 82, 59 % );
+    alternate-normal-background: rgba ( 46, 46, 46, 100 % );
     red:                         rgba ( 220, 50, 47, 100 % );
     selected-urgent-foreground:  rgba ( 249, 249, 249, 100 % );
     blue:                        rgba ( 38, 139, 210, 100 % );
@@ -18,7 +18,7 @@
     lightbg:                     rgba ( 238, 232, 213, 100 % );
     selected-active-foreground:  rgba ( 249, 249, 249, 100 % );
     alternate-active-background: rgba ( 75, 81, 96, 89 % );
-    background:                  rgba ( 45, 48, 59, 100 % );
+    background:                  rgba ( 34, 34, 34, 100 % );
     alternate-normal-foreground: @foreground;
     normal-background:           @background;
     lightfg:                     rgba ( 88, 104, 117, 100 % );
@@ -33,14 +33,13 @@
     alternate-active-foreground: @active-foreground;
     active-background:           rgba ( 29, 31, 33, 17 % );
     selected-active-background:  rgba ( 68, 145, 237, 100 % );
-    prompt:                      rgba ( 240, 198, 116, 100 % );
+    prompt:                      rgba ( 255, 218, 84, 100 % );
 }
 window {
     background-color: @background;
     border:           1;
-    border-radius:    15;
+    border-radius:    10;
     padding:          10;
-    font:             20;
 }
 mainbox {
     border:  0;
@@ -56,16 +55,13 @@ textbox {
 }
 listview {
     fixed-height: 0;
-    lines:        1;
-    columns:      6;
-    border:       2px 0px 0px ;
-    border-color: @separatorcolor;
+    lines:        6;
     spacing:      2px ;
     scrollbar:    true;
     padding:      2px 0px 0px ;
 }
 element {
-    border-radius: 10px;
+    border-radius: 7px;
     border:  0;
     padding: 5px ;
 }
@@ -139,7 +135,7 @@ prompt {
 }
 inputbar {
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
-    padding:    5;
+    padding:    5px 5px 10px 5px;
     vertical-align: 0.5;
 }
 textbox-prompt-colon {
