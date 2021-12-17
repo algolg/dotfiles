@@ -1,3 +1,0 @@
-pkill dunst
-
-dunst
