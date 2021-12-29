@@ -54,6 +54,7 @@ bindsym $mod+Return exec alacritty
 # bindsym $mod+d exec --no-startup-id dmenu_run
 # bindsym $mod+space exec --no-startup-id rofi -combi-modi window#drun#ssh -theme solarized -font "consolas 10" -show combi
 bindsym $mod+space exec --no-startup-id rofi -show combi
+bindcode $mod+23 exec --no-startup-id rofi -show window
 
 # rofi power menu
 bindsym $mod+l exec --no-startup-id rofi -show power-menu -modi power-menu:rofi-power-menu -font "NotoSansMono Nerd Font Bold 16"
@@ -69,10 +70,6 @@ bindsym $mod+a focus left
 bindsym $mod+s focus down
 bindsym $mod+w focus up
 bindsym $mod+d focus right
-
-# basically focus next/previous (mod+tab, mod+shift+tab)
-bindcode $mod+23 focus right
-bindcode $mod+shift+23 focus left
 
 # move focused window
 bindsym $mod+Shift+a move left
@@ -98,7 +95,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+t layout tabbed
 bindsym $mod+y layout stacking
-bindsym $mod+e layout toggle split
+bindsym $mod+q layout toggle split
 #bindsym $mod+shift+f focus parent
 
 # toggle tiling / floating
@@ -149,7 +146,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+l exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -227,7 +224,7 @@ exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
 bindsym $mod+shift+p exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
 
 # WALLPAPER
-exec_always --no-startup-id feh --bg-scale ~/Downloads/bg-4.png
+exec_always --no-startup-id feh --bg-scale ~/.config/i3/bg/bg-4.png
 
 # PICOM
 exec --no-startup-id sh $HOME/.config/picom/launch.sh
@@ -252,26 +249,39 @@ for_window [class="Pavucontrol" instance="pavucontrol"] floating enable, move po
 for_window [class="Thunar" instance="thunar"] floating enable
 for_window [class="PureRef" instance="PureRef_78a3a1214a0fe784d48b894409e3630a"] floating enable
 for_window [class="Org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable
-for_window [class="Spotify"] border pixel 0
-for_window [class="Galendae" instance="galendae"] move position 1623 50
-
-# BLUE LIGHT FILTER (REDSHIFT)
-#exec_always --no-startup-id redshift -l 34:-118 -g 0.85 -t 5000:3700
-#exec_always redshift -l 34:-118 -g 0.85 -t 5000:3000
-bindsym $mod+Shift+u exec pkill -USR1  redshift
+for_window [class="Spotify"] border pixel o
+for_window [class="feh" instance="feh"] floating enable
+for_window [class="Galendae" instance="galendae"] move position 1623 50 
 
 # PROGRAM OPENING KEYBINDS
-bindsym $mod+Shift+f exec run-or-raise firefox
+bindsym $mod+z exec --no-startup-id run-or-raise firefox firefox
+bindsym $mod+shift+z exec --no-startup-id firefox
+bindsym $mod+e exec --no-startup-id nautilus 
 
-# SCREENSHOTS (Spectacle -> Prntscrn)
+# SCREENSHOTS TO CLIPBOARD
+bindsym $mod+ctrl+a exec --no-startup-id maim --hidecursor | xclip -selection clipboard -t image/png && notify-send --icon /usr/share/icons/Fancy-Dark-Icons/apps/48/spectacle.svg "Full Screen Captured"
+bindsym $mod+ctrl+shift+a exec --no-startup-id sleep 3 && maim --hidecursor | xclip -selection clipboard -t image/png && notify-send --icon /usr/share/icons/Fancy-Dark-Icons/apps/48/spectacle.svg "Full Screen Captured"
+
+bindsym $mod+ctrl+c exec --no-startup-id maim --hidecursor --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png && notify-send --icon /usr/share/icons/Fancy-Dark-Icons/apps/48/spectacle.svg "Active Window Captured"
+bindsym $mod+ctrl+shift+c exec --no-startup-id sleep 3 && maim --hidecursor --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png && notify-send --icon /usr/share/icons/Fancy-Dark-Icons/apps/48/spectacle.svg "Active Window Captured"
+
+bindsym $mod+ctrl+s exec --no-startup-id maim --hidecursor --select | xclip -selection clipboard -t image/png && notify-send --icon /usr/share/icons/Fancy-Dark-Icons/apps/48/spectacle.svg "Rectangular Region Captured"
+bindsym $mod+ctrl+shift+s exec --no-startup-id sleep 3 && maim --hidecursor --select | xclip -selection clipboard -t image/png && notify-send --icon /usr/share/icons/Fancy-Dark-Icons/apps/48/spectacle.svg "Rectangular Region Captured"
+
+# RUN AT START
+exec_always --no-startup-id nm-applet
 
 # DUNST
 exec_always --no-startup-id sh $HOME/.config/dunst/launch.sh
 
 # TABS
-# class                 border  backgr. text    indicator child_border
-client.focused          #55a4d9 #55a4d9 #1d1f21 #2e9ef4   #55a4d9
-client.focused_inactive #55a4d9 #55a4d9 #1d1f21 #2e9ef4   #55a4d9
-client.unfocused        #1d1f21 #1d1f21 #c5c8c6 #292d2e   #1d1f21 
+# class                 border    backgr.   text    indicator  child_border
+client.focused          #44444477 #44444477 #222222 #44444400  #44444400
+client.focused_inactive #44444477 #44444477 #222222 #44444400  #44444400
+client.unfocused        #44444433 #44444433 #222222 #44444400  #44444400 
 font pango:Consolas Bold 16px
+
+# NOTES
+#	ncdu -e / --exclude /run
+#		useful command for analyzing file storage
 
