@@ -53,7 +53,7 @@ line-color = #f00
 padding-left = 1
 padding-right = 1
 
-module-margin-left = 2
+module-margin-left = 1
 module-margin-right = 1
 
 font-0 = Consolas:style=Bold:pixelsize=15;2
@@ -62,16 +62,17 @@ font-2 = siji:style=Bold:pixelsize=15;2
 font-3 = NotoSansMono Nerd Font:pixelsize=16;3
 font-4 = Noto Sans Mono CJK JP:style=Bold:pixelsize=16;2
 font-5 = Noto Sans Mono CJK HK:style=Bold:pixelsize=16;2
+font-6 = Hack:style=Bold:pixelsize=20;3
 
 modules-left = i3
 modules-center = now-playing
-modules-right = pulseaudio battery date powermenu
+modules-right = pulseaudio network battery date powermenu
 ;backlight-acpi is nice but prob not necessary
 
 tray-position = right
 tray-detached = true
-tray-offset-x = -465
-tray-background = ${colors.background-alt}
+tray-offset-x = -455
+tray-offset-y = -1
 ;tray-maxsize = 20
 ;tray-background = #0063ff
 
@@ -242,6 +243,23 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
 
+[module/network]
+type = internal/network
+interface = wlp111s0
+interval = 1.0
+format-connected = %{A1:sh ~/.config/polybar/scripts/rofi-wifi.sh:}%{A3:sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle:}<label-connected>%{A}%{A}
+format-disconnected = %{A1:sh ~/.config/polybar/scripts/rofi-wifi.sh:}%{A3:sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle:}<label-disconnected>%{A}%{A}
+label-connected = ⇅
+label-connected-foreground = ${colors.tertiary}
+label-disconnected = ↯
+label-disconnected-foreground = #666
+label-connected-font = 7
+label-disconnected-font = 7
+
+ramp-signal-font = 1
+
+click-right = exec sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle
+
 [module/wlan]
 type = internal/network
 interface = net1
@@ -257,7 +275,7 @@ format-disconnected = /
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = ─
+ramp-signal-0 = -
 ramp-signal-1 = =
 ramp-signal-2 = ≡
 ramp-signal-3 = ≣
@@ -294,7 +312,7 @@ format-prefix-foreground = ${colors.foreground-alt}
 label = %date% %time%
 label-foreground = ${colors.tertiary} 
 
-click-right = exec galendae
+format = %{A1:galendae:}<label>%{A}
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -417,7 +435,7 @@ format-spacing = 1
 content = "⏻ "
 content-foreground = #ff3333
 label-font = 3
-click-left = exec rofi -show power-menu -modi power-menu:rofi-power-menu -font "NotoSansMono Nerd Font Bold 16" &
+click-left = exec rofi -show power-menu -modi power-menu:rofi-power-menu -font "NotoSansMono Nerd Font 13" -theme ~/.config/rofi/power-menu-uncreative.rasi &
 
 [module/now-playing]
 type = custom/script
@@ -426,7 +444,7 @@ tail = true
 format = <label>
 
 exec = ~/.config/polybar/scripts/polybar-now-playing
-click-right = "kill -USR1 $(pgrep --oldest --parent %pid%)"
+click-right = "kill -USR1 %pid%"
 
 format-font = 3
 
