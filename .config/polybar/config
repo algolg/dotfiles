@@ -23,6 +23,7 @@
 background = #33444444
 background-alt = #77444444
 foreground = #222222
+#foreground = #aaaaaa
 foreground-alt = #555
 primary = #f0c674
 secondary = #cc6666
@@ -304,7 +305,7 @@ interval = 1
 
 date = "%m-%d"
 
-time = %H:%M:%S
+time = %I:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
@@ -377,7 +378,7 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 100
+full-at = 99
 
 format-charging = <animation-charging> <label-charging>
 ;format-charging-underline = #ffb52a
@@ -446,7 +447,7 @@ format = <label>
 exec = ~/.config/polybar/scripts/polybar-now-playing
 click-right = "kill -USR1 %pid%"
 
-format-font = 3
+format-font = 1
 
 [module/polywins]
 type = custom/script

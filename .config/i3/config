@@ -41,6 +41,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Media keys
+bindsym $mod+XF86AudioRaiseVolume exec playerctl next
+bindsym $mod+XF86AudioLowerVolume exec playerctl previous
+bindsym $mod+XF86AudioMute exec playerctl play-pause
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -48,12 +53,13 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 
 # kill focused window
-# bindsym $mod+Shift+q kill
+# bindsym $mod+shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
 # bindsym $mod+space exec --no-startup-id rofi -combi-modi window#drun#ssh -theme solarized -font "consolas 10" -show combi
-bindsym $mod+space exec --no-startup-id rofi -show combi
+bindsym $mod+space exec --no-startup-id rofi -show combi -display-drun ""
+bindsym $mod+ctrl+space exec --no-startup-id rofi -show combi -theme admin-uncreative -run-command 'gksu -E {cmd}'
 bindcode $mod+23 exec --no-startup-id rofi -show window
 
 # rofi power menu
@@ -72,16 +78,16 @@ bindsym $mod+w focus up
 bindsym $mod+d focus right
 
 # move focused window
-bindsym $mod+Shift+a move left
-bindsym $mod+Shift+s move down
-bindsym $mod+Shift+w move up
-bindsym $mod+Shift+d move right
+bindsym $mod+shift+a move left
+bindsym $mod+shift+s move down
+bindsym $mod+shift+w move up
+bindsym $mod+shift+d move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+shift+Left move left
+bindsym $mod+shift+Down move down
+bindsym $mod+shift+Up move up
+bindsym $mod+shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -99,7 +105,7 @@ bindsym $mod+q layout toggle split
 #bindsym $mod+shift+f focus parent
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+shift+space floating toggle
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -130,23 +136,23 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+shift+1 move container to workspace number $ws1
+bindsym $mod+shift+2 move container to workspace number $ws2
+bindsym $mod+shift+3 move container to workspace number $ws3
+bindsym $mod+shift+4 move container to workspace number $ws4
+bindsym $mod+shift+5 move container to workspace number $ws5
+bindsym $mod+shift+6 move container to workspace number $ws6
+bindsym $mod+shift+7 move container to workspace number $ws7
+bindsym $mod+shift+8 move container to workspace number $ws8
+bindsym $mod+shift+9 move container to workspace number $ws9
+bindsym $mod+shift+0 move container to workspace number $ws10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+l exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+shift+l exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -184,7 +190,7 @@ bindsym $mod+r mode "resize"
 
 # GAP VARIABLE S
 set $top 32
-set $inner 12 
+set $inner 6
 set $outer 0
 
 # SET GAPS
@@ -194,13 +200,13 @@ gaps top $top
 
 # TOGGLE GAPS
 bindsym $mod+g exec compton; gaps inner all set $inner; gaps outer all set $outer; gaps top all set $top
-bindsym $mod+Ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0; gaps top all set 32
+bindsym $mod+Ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0; gaps top all set 0
 
 # ROUNDED CORNERS
 smart_borders on
 smart_borders no_gaps
 #border_radius 10
-for_window [class="^.*"] border pixel 0
+for_window [class=".*"] border pixel 4
 
 # QUASI ALTERNATING (FIBONACCI)
 default_orientation vertical 
@@ -228,13 +234,13 @@ exec_always --no-startup-id feh --bg-scale ~/.config/i3/bg/bg-4.png
 
 # PICOM
 exec --no-startup-id sh $HOME/.config/picom/launch.sh
-#bindsym $mod+shift+p exec_always --no-startup-id sh $HOME/.config/picom/launch.sh
+bindsym $mod+ctrl+p exec --no-startup-id sh $HOME/.config/picom/launch.sh
 
 # AUDIO
 #exec --no-startup-id $HOME/.config/pulseaudio/launch.sh
 
 # UNDERVOLT
-exec_always --no-startup-id intel-undervolt apply
+#exec --no-startup-id sudo intel-undervolt apply
 
 # BRIGHTNESS
 bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
@@ -244,6 +250,10 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
 exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga bell-window-system
 exec --no-startup-id pactl load-module module-x11-bell display=$DISPLAY
 
+# WINDOW TO DESKTOP
+for_window [class="discord"] move container to workspace 1
+for_window [class="Spotify"] move container to workspace 1
+
 # FLOATING WINDOWS
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable, move position 1294 38
 for_window [class="Thunar" instance="thunar"] floating enable
@@ -251,37 +261,43 @@ for_window [class="PureRef" instance="PureRef_78a3a1214a0fe784d48b894409e3630a"]
 for_window [class="Org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable
 for_window [class="Spotify"] border pixel o
 for_window [class="feh" instance="feh"] floating enable
-for_window [class="Galendae" instance="galendae"] move position 1628 38 
+for_window [class="Galendae" instance="galendae"] move position 1616 38
+for_window [class="Gnome-calculator" instance="gnome-calculator"] floating enable
+for_window [class="PacketTracer" instance="PacketTracer"] floating enable
 
 # PROGRAM OPENING KEYBINDS
 bindsym $mod+x exec --no-startup-id run-or-raise firefox firefox
 bindsym $mod+shift+x exec --no-startup-id firefox
-bindsym $mod+e exec --no-startup-id nautilus 
+bindsym $mod+ctrl+x exec --no-startup-id firefox --private-window
+bindsym $mod+e exec --no-startup-id nautilus -w
+bindsym $mod+shift+e exec --no-startup-id gksu -E nautilus -w
 bindsym $mod+c exec --no-startup-id run-or-raise code code
 
+# CUSTOM SHORTCUTS/KEYBINDS
+#exec --no-startup-id modmap -e "keycode 84 = KP_Down"
+#bindsym KP_Begin exec --no-startup-id xdotool key KP_Down
+
 # SCREENSHOTS TO CLIPBOARD
-bindsym $mod+ctrl+a exec --no-startup-id maim --hidecursor | xclip -selection clipboard -t image/png && notify-send --icon /usr/share/icons/Fancy-Dark-Icons/apps/48/spectacle.svg "Full Screen Captured"
-bindsym $mod+ctrl+shift+a exec --no-startup-id sleep 3 && maim --hidecursor | xclip -selection clipboard -t image/png && notify-send --icon /usr/share/icons/Fancy-Dark-Icons/apps/48/spectacle.svg "Full Screen Captured"
+bindsym $mod+ctrl+s exec --no-startup-id flameshot gui
 
-bindsym $mod+ctrl+d exec --no-startup-id maim --hidecursor --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png && notify-send --icon /usr/share/icons/Fancy-Dark-Icons/apps/48/spectacle.svg "Active Window Captured"
-bindsym $mod+ctrl+shift+d exec --no-startup-id sleep 3 && maim --hidecursor --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png && notify-send --icon /usr/share/icons/Fancy-Dark-Icons/apps/48/spectacle.svg "Active Window Captured"
-
-bindsym $mod+ctrl+s exec --no-startup-id sh $HOME/.config/i3/scripts/freeze-screenshot.sh
-bindsym $mod+ctrl+shift+s exec --no-startup-id sleep 3 && maim --hidecursor --select | xclip -selection clipboard -t image/png && notify-send --icon /usr/share/icons/Fancy-Dark-Icons/apps/48/spectacle.svg "Rectangular Region Captured"
+bindsym $mod+ctrl+shift+s exec --no-startup-id sleep 3 && flameshot gui
 
 # DUNST
 exec_always --no-startup-id sh $HOME/.config/dunst/launch.sh
 
 # TABS
-# class                 border    backgr.   text    indicator  child_border
-client.focused          #44444477 #44444477 #222222 #44444400  #44444400
-client.focused_inactive #44444477 #44444477 #222222 #44444400  #44444400
-client.unfocused        #44444433 #44444433 #222222 #44444400  #44444400 
+# class                 border    backgr.   text    indicator	child_border
+client.focused          #44444477 #44444477 #222222 #73e6ff	#73e6ff
+client.focused_inactive #44444477 #44444477 #222222 #a8abb3	#a8abb3
+client.unfocused        #44444433 #44444433 #222222 #44444400	#44444400 
 font pango:Consolas Bold 16px
+# text color should be #222222
 
 # NOTES
 #	ncdu -e / --exclude /mnt
 #		useful command for analyzing file storage
 #	sudo pacman-mirrors -f && sudo pacman -Syyu
 #		updates mirrors
+#	clonezilla
+#		used for migrating linux to another drive
 
