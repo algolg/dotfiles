@@ -2,14 +2,18 @@
 
 
 win_class=$(xdotool getwindowfocus getwindowclassname)
+echo $win_class
 
 # get list of all windows matching with the class above
 win_list=$(wmctrl -x -l | grep ".$win_class " | awk '{print $1}' )
-echo $(wmctrl -x -l | grep $win_class)
 
 # get id of the focused window
 active_win_id=$(xprop -root | grep '^_NET_ACTIVE_W' | awk -F'# 0x' '{print $2}')
-if [ "$active_win_id" == "0" ]; then
+while [ ${#active_win_id} -lt 8 ]; do
+	active_win_id="0$active_win_id"
+done
+
+if [ "$active_win_id" == "00000000" ]; then
 	    active_win_id=""
 fi
 
