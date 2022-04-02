@@ -10,6 +10,10 @@ killall -q polybar
 # polybar-msg cmd quit
 
 # Launch Polybar, using default config location ~/.config/polybar/config
-polybar -c $HOME/.config/polybar/config example
+if [[ -z "$1" ]]; then
+	polybar -c $HOME/.config/polybar/config example
+elif [[ "$1" == "-s" ]]; then
+	polybar -c $HOME/.config/polybar/s-config example
+fi
 
 echo "Polybar launched..."

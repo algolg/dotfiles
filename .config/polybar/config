@@ -22,14 +22,17 @@
 #foreground = #C5C8C6
 background = #33444444
 background-alt = #77444444
+#background-alt = #77777777
 foreground = #222222
 #foreground = #aaaaaa
 foreground-alt = #555
 primary = #f0c674
 secondary = #cc6666
-#tertiary = #81a2be
-tertiary = #078be3
-#tertiary = #55acee
+blue = #0066cc
+#blue = #078be3
+red = #ff3333
+#green = #55aa55
+green = #169e1e
 alert = #d54e53
 
 [bar/example]
@@ -251,7 +254,7 @@ interval = 1.0
 format-connected = %{A1:sh ~/.config/polybar/scripts/rofi-wifi.sh:}%{A3:sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle:}<label-connected>%{A}%{A}
 format-disconnected = %{A1:sh ~/.config/polybar/scripts/rofi-wifi.sh:}%{A3:sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle:}<label-disconnected>%{A}%{A}
 label-connected = ⇅
-label-connected-foreground = ${colors.tertiary}
+label-connected-foreground = ${colors.blue}
 label-disconnected = ↯
 label-disconnected-foreground = #666
 label-connected-font = 7
@@ -288,7 +291,7 @@ type = internal/network
 interface = eno1
 interval = 3.0
 
-format-connected-underline = #55aa55
+format-connected-underline = ${colors.green}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -311,7 +314,7 @@ format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 
 label = %date% %time%
-label-foreground = ${colors.tertiary} 
+label-foreground = ${colors.blue} 
 
 format = %{A1:galendae:}<label>%{A}
 
@@ -327,11 +330,11 @@ label-muted = MUT
 label-muted-foreground = #666
 
 bar-volume-width = 21
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.green}
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
@@ -358,11 +361,11 @@ format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
 bar-volume-width = 12
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.green}
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
@@ -382,14 +385,14 @@ full-at = 99
 
 format-charging = <animation-charging> <label-charging>
 ;format-charging-underline = #ffb52a
-;format-charging-foreground = #55aa55
+;format-charging-foreground = ${colors.green}
 
 format-discharging = <ramp-capacity> <label-discharging>
 ;format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " "
 format-full-prefix-font = 3
-format-full-prefix-foreground = #55aa55
+format-full-prefix-foreground = ${colors.green}
 ;format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = " "
@@ -434,7 +437,7 @@ type = custom/text
 
 format-spacing = 1
 content = "⏻ "
-content-foreground = #ff3333
+content-foreground = ${colors.red}
 label-font = 3
 click-left = exec rofi -show power-menu -modi power-menu:rofi-power-menu -font "NotoSansMono Nerd Font 13" -theme ~/.config/rofi/power-menu-uncreative.rasi &
 

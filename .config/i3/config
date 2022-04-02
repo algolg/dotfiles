@@ -53,7 +53,7 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 
 # kill focused window
-# bindsym $mod+shift+q kill
+bindsym $mod+shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
@@ -77,6 +77,9 @@ bindsym $mod+s focus down
 bindsym $mod+w focus up
 bindsym $mod+d focus right
 
+# switch to window of same class
+bindcode $mod+49 exec --no-startup-id sh $HOME/.config/i3/scripts/switcher.sh
+
 # move focused window
 bindsym $mod+shift+a move left
 bindsym $mod+shift+s move down
@@ -91,6 +94,7 @@ bindsym $mod+shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
+bindsym $mod+n split none
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -102,7 +106,9 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+t layout tabbed
 bindsym $mod+y layout stacking
 bindsym $mod+q layout toggle split
-#bindsym $mod+shift+f focus parent
+bindsym $mod+z focus parent
+bindsym $mod+ctrl+a focus parent focus left
+bindsym $mod+ctrl+d focus parent focus right
 
 # toggle tiling / floating
 bindsym $mod+shift+space floating toggle
@@ -199,8 +205,9 @@ gaps outer $outer
 gaps top $top
 
 # TOGGLE GAPS
-bindsym $mod+g exec compton; gaps inner all set $inner; gaps outer all set $outer; gaps top all set $top
-bindsym $mod+Ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0; gaps top all set 0
+bindsym $mod+g exec compton; gaps inner all set $inner; gaps outer all set $outer; gaps top all set $top; exec sh $HOME/.config/polybar/launch.sh
+bindsym $mod+ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0; gaps top all set 0; exec killall polybar
+bindsym $mod+shift+g  exec compton; gaps inner all set 0; gaps outer all set 0; gaps top all toggle 24; exec sh $HOME/.config/polybar/launch.sh -s
 
 # ROUNDED CORNERS
 smart_borders on
@@ -208,20 +215,9 @@ smart_borders no_gaps
 #border_radius 10
 for_window [class=".*"] border pixel 4
 
-# QUASI ALTERNATING (FIBONACCI)
-default_orientation vertical 
-#start in opposite orientation from your monitor
-for_window [class=".*"] split toggle 
-#toggles split at each new window
-bindsym $mod+shift+q split toggle kill 
-#kill command resets the split
-# bindsym $mod+e layout toggle split; this is already at the top 
-# should already exist but use if split orientation  messes up
-
 # REMOVE/MODIFY TITLEBAR
 default_border pixel 1
 default_floating_border pixel 1
-new_window 1pixel
 for_window [class=".*"] title_format "%class" 
 # ^ makes sure that the titlebar only has the program's class name
 
@@ -230,7 +226,7 @@ exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
 bindsym $mod+shift+p exec --no-startup-id sh $HOME/.config/polybar/launch.sh
 
 # WALLPAPER
-exec_always --no-startup-id feh --bg-scale ~/.config/i3/bg/bg-4.png
+exec_always --no-startup-id feh --bg-scale ~/.config/i3/bg/bg-17.png
 
 # PICOM
 exec --no-startup-id sh $HOME/.config/picom/launch.sh
@@ -251,7 +247,7 @@ exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/be
 exec --no-startup-id pactl load-module module-x11-bell display=$DISPLAY
 
 # WINDOW TO DESKTOP
-for_window [class="discord"] move container to workspace 1
+assign [class="discord"]  1
 for_window [class="Spotify"] move container to workspace 1
 
 # FLOATING WINDOWS
@@ -278,9 +274,9 @@ bindsym $mod+c exec --no-startup-id run-or-raise code code
 #bindsym KP_Begin exec --no-startup-id xdotool key KP_Down
 
 # SCREENSHOTS TO CLIPBOARD
-bindsym $mod+ctrl+s exec --no-startup-id flameshot gui
+bindsym $mod+ctrl+s exec --no-startup-id sh $HOME/.config/i3/scripts/sc.sh
 
-bindsym $mod+ctrl+shift+s exec --no-startup-id sleep 3 && flameshot gui
+bindsym $mod+ctrl+shift+s exec --no-startup-id sleep 3 && $HOME/.config/i3/scripts/sc.sh
 
 # DUNST
 exec_always --no-startup-id sh $HOME/.config/dunst/launch.sh
@@ -288,6 +284,7 @@ exec_always --no-startup-id sh $HOME/.config/dunst/launch.sh
 # TABS
 # class                 border    backgr.   text    indicator	child_border
 client.focused          #44444477 #44444477 #222222 #73e6ff	#73e6ff
+#client.focused        	#44444477 #44444477 #aaaaaa #ddddee	#ddddee
 client.focused_inactive #44444477 #44444477 #222222 #a8abb3	#a8abb3
 client.unfocused        #44444433 #44444433 #222222 #44444400	#44444400 
 font pango:Consolas Bold 16px
