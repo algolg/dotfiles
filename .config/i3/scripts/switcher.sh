@@ -2,7 +2,6 @@
 
 
 win_class=$(xdotool getwindowfocus getwindowclassname)
-echo $win_class
 
 # get list of all windows matching with the class above
 win_list=$(wmctrl -x -l | grep ".$win_class " | awk '{print $1}' )

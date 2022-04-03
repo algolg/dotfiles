@@ -196,7 +196,7 @@
     max_icon_size = 64
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/Fancy-Dark-Icons/status/64:/usr/share/icons/Fancy-Dark-Icons/devices/48:/usr/share/icons/Fancy-Dark-Icons/emblems/48:/usr/share/icons/Fancy-Dark-Icons/mimetypes/48:/usr/share/icons/Fancy-Dark-Icons/apps/48
+    icon_path = /usr/share/icons/Crule-dark/status/16:/usr/share/icons/Crule-dark/status/22/usr/share/icons/Crule-dark/status/24:/usr/share/icons/Crule-dark/status/32:/usr/share/icons/Crule-dark/apps/scalable:/usr/share/icons/Crule-dark/apps/symbolic:/usr/share/icons/Crule-dark/emblems:/usr/share/icons/Crule-dark/emblems/22:/usr/share/icons/Crule-dark/emblems/24:/usr/share/icons/Crule-dark/emblems/symbolic
 
     ### History ###
 
