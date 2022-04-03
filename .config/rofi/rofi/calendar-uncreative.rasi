@@ -1,0 +1,89 @@
+/************************************************
+ * ROFI Color theme
+ * User: leofa
+ * Copyright: 2017 leofa
+ ***********************************************/
+
+* {
+    selected-normal-foreground:  rgba ( 249, 249, 249, 100 % );
+    foreground:                  rgba ( 225, 225, 225, 100 % );
+    normal-foreground:           @foreground;
+    alternate-normal-background: rgba ( 225, 225, 225, 20 % );
+    red:                         rgba ( 220, 50, 47, 100 % );
+    selected-urgent-foreground:  rgba ( 249, 249, 249, 100 % );
+    blue:                        rgba ( 38, 139, 210, 100 % );
+    urgent-foreground:           rgba ( 204, 102, 102, 100 % );
+    alternate-urgent-background: rgba ( 75, 81, 96, 90 % );
+    active-foreground:           rgba ( 101, 172, 255, 100 % );
+    lightbg:                     rgba ( 238, 232, 213, 100 % );
+    selected-active-foreground:  rgba ( 249, 249, 249, 100 % );
+    background:                  rgba ( 68, 68, 68, 47 % );
+    alternate-normal-foreground: @foreground;
+    normal-background:           @background;
+    lightfg:                     rgba ( 88, 104, 117, 100 % );
+    selected-normal-background:  rgba ( 64, 132, 214, 100 % );
+    border-color:                rgba ( 29, 31, 33, 17 % ); 
+    spacing:                     2;
+    urgent-background:           rgba ( 29, 31, 33, 17 % );
+    selected-urgent-background:  rgba ( 165, 66, 66, 100 % );
+    background-color:            rgba ( 0, 0, 0, 0 % );
+    active-background:           rgba ( 29, 31, 33, 40 % );
+    prompt:                      rgba ( 255, 218, 84, 100 % );
+}
+window {
+    width:		16.875%;
+    location:		north east;
+    anchor:		north east;
+    x-offset:		-6;
+    y-offset:		38;
+    background-color: 	@background;
+    border:           	3;
+    border-color:	@prompt;
+    border-radius:    	5;
+    padding:          	10;
+    children: [listview];
+}
+listview {
+    lines:	  1;
+    fixed-height: 0;
+    spacing:      2px ;
+    scrollbar:    false;
+}
+element {
+    border-radius: 4px;
+    border:  0;
+    padding: 1px ;
+}
+element-text {
+    vertical-align: 0.5;
+    padding: 5;
+    text-color:       @normal-foreground;
+}
+element.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+element.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+element.selected.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-color: @normal-foreground;
+    handle-width: 8px ;
+    padding:      0;
+}
+/* vim:ft=css
