@@ -41,7 +41,7 @@ alert = #d54e53
 #offset-x = 12
 #offset-y = 12
 
-height = 32
+height = 30
 #radius = 10
 
 fixed-center = true
@@ -60,13 +60,13 @@ padding-right = 1
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = Consolas:style=Bold:pixelsize=15;2
+font-0 = Consolas:style=Regular:pixelsize=15;2
 font-1 = Liberation Sans:fontformat=truetype:size=10:antialias=false;1
 font-2 = siji:style=Bold:pixelsize=15;2
-font-3 = NotoSansMono Nerd Font:pixelsize=16;3
-font-4 = Noto Sans Mono CJK JP:style=Bold:pixelsize=16;2
-font-5 = Noto Sans Mono CJK HK:style=Bold:pixelsize=16;2
-font-6 = Hack:style=Bold:pixelsize=20;3
+font-3 = NotoSansMono Nerd Font:pixelsize=15;2
+font-4 = Noto Sans Mono CJK JP:style=Regular:pixelsize=16;2
+font-5 = Noto Sans Mono CJK HK:style=Regular:pixelsize=16;2
+font-6 = Hack:style=Regular:pixelsize=20;3
 
 modules-left = i3
 modules-center = now-playing
@@ -113,37 +113,10 @@ format-prefix-foreground = ${colors.foreground-alt}
 label-layout = %layout%
 label-layout-foreground = ${colors.secondary}
 
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
+[module/logo]
+type = custom/text
+content = 
+content-font = 7
 
 [module/i3]
 type = internal/i3
@@ -181,34 +154,6 @@ label-urgent-padding = 2
 ; Separator in between workspaces
 ;label-separator = |
 
-
-[module/mpd]
-type = internal/mpd
-host = 127.0.0.1
-port = 6600
-interval = 1
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-format-online-font = 3
-
-; Only applies if <icon-X> is used
-icon-play = ⏵
-icon-pause = ⏸
-icon-stop = ⏹
-icon-prev = ⏮
-icon-next = ⏭
-icon-seekb = ⏪
-icon-seekf = ⏩
-icon-consume = ✀
-icon-font = 3
-
-label-song = 𝄞 %artist% - %title%
-label-song-maxlen = 25
-label-song-ellipsis = true
-label-song-font = 3
-
-label-offline = 🎜 mpd is offline
-label-offline-font = 3
-
 [module/xbacklight]
 type = internal/xbacklight
 
@@ -231,22 +176,6 @@ inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
-label = %percentage:2%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
-label = %percentage_used%%
-
 [module/network]
 type = internal/network
 interface = wlp111s0
@@ -263,44 +192,6 @@ label-disconnected-font = 7
 ramp-signal-font = 1
 
 click-right = exec sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle
-
-[module/wlan]
-type = internal/network
-interface = net1
-interval = 3.0
-
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-label-connected = %essid%
-
-format-disconnected = /
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 = -
-ramp-signal-1 = =
-ramp-signal-2 = ≡
-ramp-signal-3 = ≣
-ramp-font = 0
-ramp-signal-foreground = ${colors.foreground-alt}
-
-[module/eth]
-type = internal/network
-interface = eno1
-interval = 3.0
-
-format-connected-underline = ${colors.green}
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
@@ -348,34 +239,6 @@ bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
 click-right = exec pavucontrol --tab=3 &
-
-[module/alsa]
-type = internal/alsa
-
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
-
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
-
-bar-volume-width = 12
-bar-volume-foreground-0 = ${colors.green}
-bar-volume-foreground-1 = ${colors.green}
-bar-volume-foreground-2 = ${colors.green}
-bar-volume-foreground-3 = ${colors.green}
-bar-volume-foreground-4 = ${colors.green}
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery

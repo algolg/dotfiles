@@ -14,6 +14,8 @@ if [[ -z "$1" ]]; then
 	polybar -c $HOME/.config/polybar/config example
 elif [[ "$1" == "-s" ]]; then
 	polybar -c $HOME/.config/polybar/s-config example
+elif [[ "$1" == "-w" ]]; then
+	polybar -c $HOME/.config/polybar/workspace-display main
 fi
 
 echo "Polybar launched..."

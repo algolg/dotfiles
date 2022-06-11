@@ -38,8 +38,7 @@
 window {
     background-color: @background;
     border:           3;
-    border-radius:    5;
-    border-color:     @prompt;
+    border-radius:    7;
     padding:          10;
 }
 mainbox {

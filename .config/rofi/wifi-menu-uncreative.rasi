@@ -35,10 +35,9 @@ window {
     location:		north east;
     anchor:		north east;
     x-offset:		-100;
-    y-offset:		38;
+    y-offset:		32;
     background-color: 	@background;
     border:           	3;
-    border-color:	@prompt;
     border-radius:    	5;
     padding:          	10;
     children: [listview];

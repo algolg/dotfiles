@@ -155,3 +155,14 @@ if has('langmap') && exists('+langremap')
   set nolangremap
 endif
 
+colo ron
+
+call plug#begin()
+
+Plug 'https://github.com/elkowar/yuck.vim'
+Plug 'vim-scripts/c.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'sindrets/diffview.nvim'
+
+call plug#end()
+

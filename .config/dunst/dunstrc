@@ -86,7 +86,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 4
+    frame_width = 2
 
     # Defines color of the frame around the notification window.
     frame_color = "#078be3cc"
@@ -300,7 +300,7 @@
 
 [urgency_normal]
     background = "#222222"
-    foreground = "#888888"
+    foreground = "#c5c6c8"
     #background = "#1c1b22
     #foreground = "#c5c8c6"
     timeout = 10

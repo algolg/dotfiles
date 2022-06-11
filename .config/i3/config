@@ -28,7 +28,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock-fancy --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -78,13 +78,13 @@ bindsym $mod+w focus up
 bindsym $mod+d focus right
 
 # switch to window of same class
-bindcode $mod+49 exec --no-startup-id sh $HOME/.config/i3/scripts/switcher.sh
+bindcode $mod+49 exec --no-startup-id switch-to
 
 # move focused window
-bindsym $mod+shift+a move left
-bindsym $mod+shift+s move down
-bindsym $mod+shift+w move up
-bindsym $mod+shift+d move right
+bindsym $mod+shift+a move left 10 px
+bindsym $mod+shift+s move down 10 px
+bindsym $mod+shift+w move up 10 px
+bindsym $mod+shift+d move right 10 px
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+shift+Left move left
@@ -195,8 +195,9 @@ bindsym $mod+r mode "resize"
 ##########################################################
 
 # GAP VARIABLES
-set $top 32
+set $top 30
 set $inner 6
+set $wideinner 60
 set $outer 0
 # SET GAPS
 gaps inner $inner
@@ -205,7 +206,7 @@ gaps top $top
 # TOGGLE GAPS
 bindsym $mod+g exec compton; gaps inner all set $inner; gaps outer all set $outer; gaps top all set $top; exec sh $HOME/.config/polybar/launch.sh
 bindsym $mod+ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0; gaps top all set 0; exec killall polybar
-bindsym $mod+shift+g  exec compton; gaps inner all set 0; gaps outer all set 0; gaps top all toggle 24; exec sh $HOME/.config/polybar/launch.sh -s
+bindsym $mod+shift+g  exec killall polybar; gaps outer all set $outer; gaps inner all set $wideinner; exec sh $HOME/.config/polybar/launch.sh -w
 # ROUNDED CORNERS
 smart_borders on
 smart_borders no_gaps
@@ -215,13 +216,21 @@ for_window [class=".*"] border pixel 4
 default_border pixel 1
 default_floating_border pixel 1
 for_window [class=".*"] title_format "%class" 
+for_window [class=".*"] title_window_icon no
+# WALLPAPER ROFI
+bindsym $mod+b exec cd ~/.config/i3/bg && ls | rofi -dmenu | xargs feh --bg-scale
+
 # TABS
 # class                 border		backgr.		text		indicator	child_border
-client.focused          #44444477	#44444477	#222222		#73e6ff		#73e6ff
-#client.focused        	#44444477	#44444477	#aaaaaa		#ddddee		#ddddee
+client.focused          #44444477	#44444477	#222222		#82b4d4		#82b4d4
 client.focused_inactive #44444477	#44444477	#222222		#a8abb3		#a8abb3
-client.unfocused        #44444433	#44444433	#222222		#44444400	#44444400 
+client.unfocused        #44444433	#44444433	#222222		#444444		#444444
 client.urgent		#ff5555		#ff5555		#222222		#ff5555		#ff5555
+
+#client.focused		#44444477	#44444477	#222222		#73e6ff		#73e6ff
+#client.focused		#44444477	#44444477	#aaaaaa		#ddddee		#ddddee
+#client.unfocused	#44444433	#44444433	#222222		#44444400	#44444400
+
 font pango:Consolas Bold 16px
 # text color should be #222222
 
@@ -244,7 +253,7 @@ exec_always --no-startup-id sh $HOME/.config/dunst/launch.sh
 exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga bell-window-system
 exec --no-startup-id pactl load-module module-x11-bell display=$DISPLAY
 # WALLPAPER
-exec_always --no-startup-id feh --bg-scale ~/.config/i3/bg/bg-17.png
+exec_always --no-startup-id feh --bg-scale ~/.config/i3/bg/bg-4.png
 
 
 ##########################################################
@@ -263,7 +272,7 @@ for_window [class="PureRef" instance="PureRef_78a3a1214a0fe784d48b894409e3630a"]
 for_window [class="Org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable
 for_window [class="Spotify"] border pixel o
 for_window [class="feh" instance="feh"] floating enable
-for_window [class="Galendae" instance="galendae"] move position 1616 38
+for_window [class="Galendae" instance="galendae"] move position 1616 36
 for_window [class="Gnome-calculator" instance="gnome-calculator"] floating enable
 for_window [class="PacketTracer" instance="PacketTracer"] floating enable
 
@@ -280,7 +289,7 @@ bindsym $mod+shift+x exec --no-startup-id firefox
 bindsym $mod+ctrl+x exec --no-startup-id firefox --private-window
 bindsym $mod+e exec --no-startup-id nautilus -w
 bindsym $mod+shift+e exec --no-startup-id gksu -E nautilus -w
-bindsym $mod+c exec --no-startup-id run-or-raise code code
+bindsym $mod+c exec --no-startup-id run-or-raise code-oss code-oss
 # SCREENSHOTS
 bindsym $mod+ctrl+s exec --no-startup-id sh $HOME/.config/i3/scripts/sc.sh
 bindsym $mod+ctrl+shift+s exec --no-startup-id sleep 3 && sh $HOME/.config/i3/scripts/sc.sh
