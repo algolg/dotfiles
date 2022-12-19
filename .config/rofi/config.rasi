@@ -1,6 +1,6 @@
 configuration {
-	modi: "window,drun,ssh,combi";
-	combi-modi: "drun,window";
+	modi: "window,drun,ssh,combi,recent:~/.local/bin/rofi-recent";
+	combi-modi: "drun,recent";
 /*	font: "Consolas Bold 16";*/
 	font: "Consolas 16";
 /*	location: 0;*/
@@ -63,6 +63,7 @@ configuration {
 /*	display-combi: ;*/
 /*	display-keys: ;*/
 /*	display-filebrowser: ;*/
+	display-recent: "";
 /*	kb-primary-paste: "Control+V,Shift+Insert";*/
 /*	kb-secondary-paste: "Control+v,Insert";*/
 /*	kb-clear-line: "Control+w";*/

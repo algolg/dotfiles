@@ -61,7 +61,7 @@ font-5 = Noto Sans Mono CJK HK:style=Regular:pixelsize=16;2
 font-6 = Hack:style=Regular:pixelsize=20;3
 
 modules-left = i3
-modules-right = date battery
+modules-right = music-buttons pulseaudio date battery
 
 tray-position = right
 tray-detached = true
@@ -157,6 +157,32 @@ time = %I:%M
 format-prefix-foreground = ${colors.foreground-alt}
 
 label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume><label-volume>
+
+label-volume = %percentage%%
+
+label-muted = 婢%percentage%%
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
+ramp-volume-font = 4
+
+click-right = exec pavucontrol --tab=3 &
+
+[module/music-buttons]
+type = custom/script
+
+tail = true
+format = <label>
+
+exec = python3 ~/.config/polybar/scripts/musicbuttons.py
+click-right = "kill -USR1 %pid%"
+
+format-font = 4
 
 [settings]
 screenchange-reload = true
