@@ -275,6 +275,9 @@ for_window [class="feh" instance="feh"] floating enable
 for_window [class="Galendae" instance="galendae"] move position 1616 36
 for_window [class="Gnome-calculator" instance="gnome-calculator"] floating enable
 for_window [class="PacketTracer" instance="PacketTracer"] floating enable
+# SCRATCHPAD
+bindsym $mod+minus move scratchpad
+bindsym $mod+Shift+minus scratchpad show
 
 
 ##########################################################

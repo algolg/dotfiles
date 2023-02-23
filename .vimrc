@@ -155,7 +155,7 @@ if has('langmap') && exists('+langremap')
   set nolangremap
 endif
 
-colo ron
+colo ron_legacy
 
 call plug#begin()
 
