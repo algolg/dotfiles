@@ -3,8 +3,7 @@
 
 
 ## things
-wm: 13-gaps-rounded <br>
-icons: Crule-dark <br>
-theme: Cutefish-dark (GTK) <br>
+wm: 13-gaps (and sometimes GNOME) <br>
+icons: Adwaita <br>
 file manager: Nautilus <br>
 status bar: Polybar

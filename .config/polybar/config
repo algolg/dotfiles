@@ -63,10 +63,10 @@ module-margin-right = 1
 font-0 = Consolas:style=Regular:pixelsize=15;3
 font-1 = Liberation Sans:fontformat=truetype:size=10:antialias=false;1
 font-2 = siji:style=Bold:pixelsize=15;2
-font-3 = NotoSansMono Nerd Font:pixelsize=15;2
-font-4 = Noto Sans Mono CJK JP:style=Regular:pixelsize=16;2
-font-5 = Noto Sans Mono CJK HK:style=Regular:pixelsize=16;2
-font-6 = Hack:style=Regular:pixelsize=20;3
+font-3 = Hack:style=Regular:pixelsize=20;3
+#font-4 = NotoSansMono Nerd Font:pixelsize=15;2
+#font-5 = Noto Sans Mono CJK JP:style=Regular:pixelsize=16;2
+#font-6 = Noto Sans Mono CJK HK:style=Regular:pixelsize=16;2
 
 modules-left = i3
 modules-center = now-playing
@@ -116,7 +116,7 @@ label-layout-foreground = ${colors.secondary}
 [module/logo]
 type = custom/text
 content = 
-content-font = 7
+content-font = 4
 
 [module/i3]
 type = internal/i3
