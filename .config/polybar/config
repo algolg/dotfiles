@@ -17,9 +17,6 @@
 ;==========================================================
 
 [colors]
-#background = #14181a
-#background-alt = #444444
-#foreground = #C5C8C6
 background = #33444444
 background-alt = #77444444
 #background-alt = #77777777
@@ -35,14 +32,8 @@ red = #ff3333
 green = #169e1e
 alert = #d54e53
 
-[bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
-#width = 100%:-24
-#offset-x = 12
-#offset-y = 12
-
+[bar/main]
 height = 30
-#radius = 10
 
 fixed-center = true
 override-redirect = true
@@ -63,30 +54,19 @@ module-margin-right = 1
 font-0 = Consolas:style=Regular:pixelsize=15;3
 font-1 = Liberation Sans:fontformat=truetype:size=10:antialias=false;1
 font-2 = siji:style=Bold:pixelsize=15;2
-font-3 = Hack:style=Regular:pixelsize=20;3
-#font-4 = NotoSansMono Nerd Font:pixelsize=15;2
+font-3 = NotoMono Nerd Font:pixelsize=17;3
+font-4 = Hack:style=Regular:pixelsize=20;3
 #font-5 = Noto Sans Mono CJK JP:style=Regular:pixelsize=16;2
 #font-6 = Noto Sans Mono CJK HK:style=Regular:pixelsize=16;2
 
 modules-left = i3
 modules-center = now-playing
 modules-right = pulseaudio network battery date powermenu
-;backlight-acpi is nice but prob not necessary
 
 tray-position = right
 tray-detached = true
 tray-offset-x = -455
 tray-offset-y = -1
-;tray-maxsize = 20
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -94,29 +74,10 @@ scroll-down = i3wm-wsprev
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
-
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
-
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-
-label-layout = %layout%
-label-layout-foreground = ${colors.secondary}
-
 [module/logo]
 type = custom/text
 content = 
-content-font = 4
+content-font = 5
 
 [module/i3]
 type = internal/i3
@@ -153,28 +114,6 @@ label-urgent-padding = 2
 
 ; Separator in between workspaces
 ;label-separator = |
-
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 11
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
 
 [module/network]
 type = internal/network
@@ -244,56 +183,48 @@ click-right = exec pavucontrol --tab=3 &
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 99
+full-at = 100
 
-format-charging = <animation-charging> <label-charging>
-;format-charging-underline = #ffb52a
-;format-charging-foreground = ${colors.green}
+format-charging = <ramp-capacity>󱐋 <label-charging>
 
-format-discharging = <ramp-capacity> <label-discharging>
-;format-discharging-underline = ${self.format-charging-underline}
+format-discharging = <ramp-capacity> <label-discharging>
+; there is a small space character (U+2009) between these two elements
 
-format-full-prefix = " "
+format-full-prefix = "󰁹 "
 format-full-prefix-font = 3
 format-full-prefix-foreground = ${colors.green}
 ;format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = " "
-ramp-capacity-1 = " "
-ramp-capacity-2 = " "
-ramp-capacity-3 = " "
-ramp-capacity-4 = " "
+ramp-capacity-0 = "󰁺"
+ramp-capacity-1 = "󰁻"
+ramp-capacity-2 = "󰁼"
+ramp-capacity-3 = "󰁽"
+ramp-capacity-4 = "󰁾"
+ramp-capacity-5 = "󰁿"
+ramp-capacity-6 = "󰂀"
+ramp-capacity-7 = "󰂁"
+ramp-capacity-8 = "󰂂"
+ramp-capacity-9 = "󰁹"
 ramp-capacity-font = 3
 ramp-capacity-0-foreground = #ff5555
 ramp-capacity-1-foreground = #ff5555
 ramp-capacity-2-foreground = #ffda54
 
-animation-charging-0 = " "
-animation-charging-1 = " "
-animation-charging-2 = " "
-animation-charging-3 = " "
-animation-charging-4 = " "
-animation-charging-framerate = 750
+animation-charging-0 = "󰢟"
+animation-charging-1 = "󰢜"
+animation-charging-2 = "󰂆"
+animation-charging-3 = "󰂇"
+animation-charging-4 = "󰂈"
+animation-charging-5 = "󰢝"
+animation-charging-6 = "󰂉"
+animation-charging-7 = "󰢞"
+animation-charging-8 = "󰂊"
+animation-charging-9 = "󰂋"
+animation-charging-10 = "󰂅"
+animation-charging-11 = "󰂅"
+animation-charging-12 = "󰂅"
+animation-charging-framerate = 250
 animation-charging-font = 3
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = <ramp> <label>
-;format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-;format-warn-underline = ${self.format-underline}
-
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/text
@@ -302,7 +233,7 @@ format-spacing = 1
 content = "⏻ "
 content-foreground = ${colors.red}
 label-font = 3
-click-left = exec rofi -show power-menu -modi power-menu:rofi-power-menu -font "NotoSansMono Nerd Font 13" -theme ~/.config/rofi/power-menu-uncreative.rasi &
+click-left = exec rofi -show power-menu -modi power-menu:rofi-power-menu -hover-select -me-select-entry '' -me-accept-entry MousePrimary -font "NotoSansMono Nerd Font 13" -theme ~/.config/rofi/power-menu-uncreative.rasi &
 
 [module/now-playing]
 type = custom/script

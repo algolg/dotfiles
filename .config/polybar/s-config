@@ -35,7 +35,7 @@ red = #ff3333
 green = #169e1e
 alert = #d54e53
 
-[bar/example]
+[bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 #width = 100%:-24
 #offset-x = 12

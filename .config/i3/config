@@ -63,7 +63,7 @@ bindsym $mod+ctrl+space exec --no-startup-id rofi -show combi -theme admin-uncre
 bindcode $mod+23 exec --no-startup-id rofi -show window
 
 # rofi power menu
-bindsym $mod+l exec --no-startup-id rofi -show power-menu -modi power-menu:rofi-power-menu -font "NotoSansMono Nerd Font Bold 16"
+bindsym $mod+l exec --no-startup-id rofi -show power-menu -modi power-menu:rofi-power-menu
 
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
@@ -244,6 +244,23 @@ font pango:Consolas Bold 16px
 # POLYBAR
 exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
 bindsym $mod+shift+p exec --no-startup-id sh $HOME/.config/polybar/launch.sh
+
+# i3BAR
+#bar {
+#	status_command i3status $HOME/.config/i3status/config
+#	position top
+#	i3bar_command i3bar -t
+#	height 30
+#	font pango:Consolas Regular 20px
+#	colors {
+#		background #44444433
+#
+#		active_workspace	#44444477 #44444477 #222222
+#		focused_workspace	#44444433 #44444477 #222222
+#		inactive_workspace	#44444433 #44444433 #222222
+#	}
+#}
+
 # PICOM
 exec --no-startup-id sh $HOME/.config/picom/launch.sh
 bindsym $mod+ctrl+p exec --no-startup-id sh $HOME/.config/picom/launch.sh
@@ -289,6 +306,7 @@ bindsym $mod+Shift+minus scratchpad show
 # PROGRAM OPENING KEYBINDS
 bindsym $mod+x exec --no-startup-id run-or-raise firefox firefox
 bindsym $mod+shift+x exec --no-startup-id firefox
+bindsym $mod+shift+z exec --no-startup-id firefox -P school
 bindsym $mod+ctrl+x exec --no-startup-id firefox --private-window
 bindsym $mod+e exec --no-startup-id nautilus -w
 bindsym $mod+shift+e exec --no-startup-id gksu -E nautilus -w

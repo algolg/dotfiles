@@ -1,5 +1,5 @@
 configuration {
-	modi: "window,drun,ssh,combi,recent:~/.local/bin/rofi-recent";
+	modi: "window,drun,ssh,combi,recent:rofi-recent";
 	combi-modi: "drun,recent";
 /*	font: "Consolas Bold 16";*/
 	font: "Consolas 16";
