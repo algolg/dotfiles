@@ -53,11 +53,12 @@ module-margin-right = 1
 
 font-0 = Consolas:style=Regular:pixelsize=15;3
 font-1 = Liberation Sans:fontformat=truetype:size=10:antialias=false;1
-font-2 = siji:style=Bold:pixelsize=15;2
-font-3 = NotoMono Nerd Font:pixelsize=17;3
-font-4 = Hack:style=Regular:pixelsize=20;3
-#font-5 = Noto Sans Mono CJK JP:style=Regular:pixelsize=16;2
-#font-6 = Noto Sans Mono CJK HK:style=Regular:pixelsize=16;2
+font-2 = NotoMono Nerd Font:pixelsize=17;3
+# https://github.com/isaif/polybar-wifi-ramp-icons
+font-3 = DejaVu Sans Mono wifi ramp:pixelsize=15;2
+font-4 = Hack:style=Regular:pixelsize=25;6
+#font-6 = Noto Sans Mono CJK JP:style=Regular:pixelsize=16;2
+#font-7 = Noto Sans Mono CJK HK:style=Regular:pixelsize=16;2
 
 modules-left = i3
 modules-center = now-playing
@@ -119,16 +120,21 @@ label-urgent-padding = 2
 type = internal/network
 interface = wlp111s0
 interval = 1.0
-format-connected = %{A1:sh ~/.config/polybar/scripts/rofi-wifi.sh:}%{A3:sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle:}<label-connected>%{A}%{A}
+format-connected = %{A1:sh ~/.config/polybar/scripts/rofi-wifi.sh:}%{A3:sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle:}<ramp-signal>%{A}%{A}
 format-disconnected = %{A1:sh ~/.config/polybar/scripts/rofi-wifi.sh:}%{A3:sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle:}<label-disconnected>%{A}%{A}
-label-connected = ⇅
-label-connected-foreground = ${colors.blue}
 label-disconnected = ↯
 label-disconnected-foreground = #666
-label-connected-font = 7
-label-disconnected-font = 7
+label-connected-font = 3
+label-disconnected-font = 5
 
-ramp-signal-font = 1
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-5 = 
+ramp-signal-font = 3
+ramp-signal-foreground = ${colors.blue}
 
 click-right = exec sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle
 

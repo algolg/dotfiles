@@ -4,8 +4,9 @@
 if [[ -z "$1" ]]; then
 	SSID=$(nmcli -t -f active,ssid,bars dev wifi | sed 's/no/ */' | sed 's/yes/CON/' > temp && column -s ":" -t temp | awk '!($2 ~ /▂/)' | rofi -i -dmenu -hover-select -me-select-entry '' -me-accept-entry MousePrimary -theme wifi-menu-uncreative -font "Consolas 14" | awk '{for (i=2;i<NF-1;i++) printf $i" "; print $(NF-1)}')
 	rm temp
-	RESPONSE=$(nmcli dev wifi connect "$SSID")
-	if [[ "$RESPONSE" =~ "Secrets were required" ]]; then
+	response=$(nmcli dev wifi connect "$SSID" 2>&1)
+	echo $response
+	if [[ "$response" =~ "Secrets were required" ]]; then
 		PASS=$(echo "Password Needed" | rofi -dmenu -password -theme wifi-menu-uncreative -font "Consolas 14")
 		nmcli dev wifi connect "$SSID" password $PASS
 	fi
