@@ -211,7 +211,7 @@ bindsym $mod+shift+g  exec killall polybar; gaps outer all set $outer; gaps inne
 smart_borders on
 smart_borders no_gaps
 #border_radius 10
-for_window [class=".*"] border pixel 4
+for_window [class=".*"] border pixel 3
 # REMOVE/MODIFY TITLEBAR
 default_border pixel 1
 default_floating_border pixel 1
@@ -222,9 +222,9 @@ bindsym $mod+b exec cd ~/.config/i3/bg && ls | rofi -dmenu | xargs feh --bg-scal
 
 # TABS
 # class                 border		backgr.		text		indicator	child_border
-client.focused          #44444477	#44444477	#222222		#82b4d4		#82b4d4
-client.focused_inactive #44444477	#44444477	#222222		#a8abb3		#a8abb3
-client.unfocused        #44444433	#44444433	#222222		#444444		#444444
+client.focused          #44444477	#44444477	#222222		#cccccc77	#cccccc77
+client.focused_inactive #44444477	#44444477	#222222		#44444433	#44444433
+client.unfocused        #44444433	#44444433	#222222		#44444433	#44444433
 client.urgent		#ff5555		#ff5555		#222222		#ff5555		#ff5555
 
 #client.focused		#44444477	#44444477	#222222		#73e6ff		#73e6ff
@@ -284,7 +284,7 @@ assign [class="discord"]  1
 for_window [class="Spotify"] move container to workspace 1
 # FLOATING WINDOWS
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable, move position 1294 38
-for_window [class="Thunar" instance="thunar"] floating enable
+for_window [class="Thunar"] floating enable
 for_window [class="PureRef" instance="PureRef_78a3a1214a0fe784d48b894409e3630a"] floating enable
 for_window [class="Org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable
 for_window [class="Spotify"] border pixel o
@@ -292,6 +292,7 @@ for_window [class="feh" instance="feh"] floating enable
 for_window [class="Galendae" instance="galendae"] move position 1616 36
 for_window [class="Gnome-calculator" instance="gnome-calculator"] floating enable
 for_window [class="PacketTracer" instance="PacketTracer"] floating enable
+for_window [class="Yad"] floating enable
 # SCRATCHPAD
 bindsym $mod+minus move scratchpad
 bindsym $mod+Shift+minus scratchpad show
@@ -308,8 +309,8 @@ bindsym $mod+x exec --no-startup-id run-or-raise firefox firefox
 bindsym $mod+shift+x exec --no-startup-id firefox
 bindsym $mod+shift+z exec --no-startup-id firefox -P school
 bindsym $mod+ctrl+x exec --no-startup-id firefox --private-window
-bindsym $mod+e exec --no-startup-id nautilus -w
-bindsym $mod+shift+e exec --no-startup-id gksu -E nautilus -w
+bindsym $mod+e exec --no-startup-id thunar
+bindsym $mod+shift+e exec --no-startup-id gksu -E thunar
 bindsym $mod+c exec --no-startup-id run-or-raise code-oss code-oss
 # SCREENSHOTS
 bindsym $mod+ctrl+s exec --no-startup-id sh $HOME/.config/i3/scripts/sc.sh

@@ -7,29 +7,42 @@
 @import "~/.config/rofi/colors.rasi"
 
 window {
-    width:		16.875%;
     location:		north east;
     anchor:		north east;
+    width:		24%;
     x-offset:		-6;
     y-offset:		32;
     background-color: 	@background;
     border:           	3;
     border-radius:    	5;
     padding:          	10;
-    children: [listview];
+    children: [month, listview];
+}
+month {
+    columns: 1;
+    lines: 1;
 }
 listview {
-    lines:	  1;
-    fixed-height: 0;
+    columns:	  7;
+    lines:	  7;
+    cycle:	  true;
+    dynamic:	  true;
+    layout:	  vertical;
+    flow:	  horizontal;
+    reverse:	  false;
+    fixed-height: true;
+    fixed-columns:true;
     spacing:      2px ;
     scrollbar:    false;
 }
 element {
+    border-color: transparent;
     border-radius: 4px;
-    border:  0;
+    border:  3;
     padding: 1px ;
 }
 element-text {
+    horizontal-align: 0.5;
     vertical-align: 0.5;
     padding: 5;
     text-color:       @normal-foreground;
@@ -43,7 +56,7 @@ element.active {
     text-color:       @active-foreground;
 }
 element.selected.normal {
-    background-color: @alternate-normal-background;
+    border-color: @alternate-normal-background;
     text-color:       @selected-normal-foreground;
 }
 element.selected.urgent {
@@ -51,7 +64,7 @@ element.selected.urgent {
     text-color:       @selected-urgent-foreground;
 }
 element.selected.active {
-    background-color: @selected-active-background;
+    border-color:     @selected-active-background;
     text-color:       @selected-active-foreground;
 }
 scrollbar {
