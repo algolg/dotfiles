@@ -45,7 +45,7 @@ element.urgent {
     text-color:       @urgent-foreground;
 }
 element.active {
-    background-color: @active-background;
+    border-color:     @active-foreground;
     text-color:       @active-foreground;
 }
 element.selected.normal {
@@ -57,7 +57,7 @@ element.selected.urgent {
     text-color:       @selected-urgent-foreground;
 }
 element.selected.active {
-    border-color:     @selected-active-background;
+    background-color: @active-foreground;
     text-color:       @selected-active-foreground;
 }
 scrollbar {
