@@ -156,6 +156,7 @@ if has('langmap') && exists('+langremap')
 endif
 
 colo ron_legacy
+set clipboard=unnamedplus
 
 call plug#begin()
 

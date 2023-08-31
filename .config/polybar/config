@@ -56,7 +56,7 @@ font-1 = Liberation Sans:fontformat=truetype:size=10:antialias=false;1
 font-2 = NotoMono Nerd Font:pixelsize=17;3
 # https://github.com/isaif/polybar-wifi-ramp-icons
 font-3 = DejaVu Sans Mono wifi ramp:pixelsize=15;2
-font-4 = Hack:style=Regular:pixelsize=25;6
+font-4 = Hack Nerd Font:style=Regular:pixelsize=25;6
 #font-6 = Noto Sans Mono CJK JP:style=Regular:pixelsize=16;2
 #font-7 = Noto Sans Mono CJK HK:style=Regular:pixelsize=16;2
 
@@ -66,7 +66,7 @@ modules-right = pulseaudio network battery date powermenu
 
 tray-position = right
 tray-detached = true
-tray-offset-x = -455
+tray-offset-x = -475
 tray-offset-y = -1
 
 scroll-up = i3wm-wsnext
@@ -118,13 +118,13 @@ label-urgent-padding = 2
 
 [module/network]
 type = internal/network
-interface = wlp111s0
+interface = wlp2s0
 interval = 1.0
 format-connected = %{A1:sh ~/.config/polybar/scripts/rofi-wifi.sh:}%{A3:sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle:}<ramp-signal>%{A}%{A}
 format-disconnected = %{A1:sh ~/.config/polybar/scripts/rofi-wifi.sh:}%{A3:sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle:}<label-disconnected>%{A}%{A}
 label-disconnected = ↯
 label-disconnected-foreground = #666
-label-connected-font = 3
+label-connected-font = 4
 label-disconnected-font = 5
 
 ramp-signal-0 = 
@@ -133,7 +133,7 @@ ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-5 = 
-ramp-signal-font = 3
+ramp-signal-font = 4
 ramp-signal-foreground = ${colors.blue}
 
 click-right = exec sh ~/.config/polybar/scripts/rofi-wifi.sh --toggle
@@ -152,7 +152,7 @@ format-prefix-foreground = ${colors.foreground-alt}
 label = %date% %time%
 label-foreground = ${colors.blue} 
 
-format = %{A1:galendae:}<label>%{A}
+format = %{A1:sh ~/.config/rofi/calendar.sh 0:}<label>%{A}
 
 [module/pulseaudio]
 type = internal/pulseaudio

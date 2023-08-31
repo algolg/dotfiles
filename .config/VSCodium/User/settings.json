@@ -50,5 +50,6 @@
     "terminal.integrated.fontFamily": "monospace",
     "editor.fontFamily": "CascadiaCode, SFMono-Regular, monospace",
     "editor.fontLigatures": true,
-    "editor.fontSize": 15
+    "editor.fontSize": 12.5,
 }
+

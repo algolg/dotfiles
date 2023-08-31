@@ -77,6 +77,8 @@ bindsym $mod+s focus down
 bindsym $mod+w focus up
 bindsym $mod+d focus right
 
+focus_follows_mouse no
+
 # switch to window of same class
 bindcode $mod+49 exec --no-startup-id switch-to
 
@@ -195,7 +197,7 @@ bindsym $mod+r mode "resize"
 ##########################################################
 
 # GAP VARIABLES
-set $top 30
+set $top 23
 set $inner 6
 set $wideinner 60
 set $outer 0
@@ -227,13 +229,8 @@ client.focused_inactive #44444477	#44444477	#222222		#44444433	#44444433
 client.unfocused        #44444433	#44444433	#222222		#44444433	#44444433
 client.urgent		#ff5555		#ff5555		#222222		#ff5555		#ff5555
 
-#client.focused		#44444477	#44444477	#222222		#73e6ff		#73e6ff
-#client.focused		#44444477	#44444477	#aaaaaa		#ddddee		#ddddee
-#client.unfocused	#44444433	#44444433	#222222		#44444400	#44444400
-
 font pango:Consolas Bold 16px
 # text color should be #222222
-
 
 ##########################################################
 ##							##
@@ -266,9 +263,11 @@ exec --no-startup-id sh $HOME/.config/picom/launch.sh
 bindsym $mod+ctrl+p exec --no-startup-id sh $HOME/.config/picom/launch.sh
 # DUNST
 exec_always --no-startup-id sh $HOME/.config/dunst/launch.sh
+
 # REMOVE BEEP SOUND
 exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga bell-window-system
 exec --no-startup-id pactl load-module module-x11-bell display=$DISPLAY
+
 # WALLPAPER
 exec_always --no-startup-id feh --bg-scale ~/.config/i3/bg/bg-4.png
 
@@ -314,13 +313,14 @@ bindsym $mod+shift+e exec --no-startup-id gksu -E thunar
 bindsym $mod+c exec --no-startup-id run-or-raise code-oss code-oss
 # SCREENSHOTS
 bindsym $mod+ctrl+s exec --no-startup-id sh $HOME/.config/i3/scripts/sc.sh
+bindsym Print exec --no-startup-id sh $HOME/.config/i3/scripts/sc.sh
 bindsym $mod+ctrl+shift+s exec --no-startup-id sleep 3 && sh $HOME/.config/i3/scripts/sc.sh
+bindsym shift+Print exec --no-startup-id sleep 3 && sh $HOME/.config/i3/scripts/sc.sh
 # BRIGHTNESS
 bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
 bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
-# REBINDING INDIVIDUAL KEYS
-#exec --no-startup-id modmap -e "keycode 84 = KP_Down"
-#bindsym KP_Begin exec --no-startup-id xdotool key KP_Down
+# IN CASE I MESS UP
+bindsym $mod+ctrl+shift+a exec --no-startup-id killall alacritty
 
 
 ##########################################################

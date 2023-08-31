@@ -37,7 +37,7 @@ alert = #d54e53
 
 [bar/main]
 height = 16
-offset-y = 1064
+offset-y = 100%:-16
 #radius = 10
 
 fixed-center = true

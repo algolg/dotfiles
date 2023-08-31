@@ -9,29 +9,22 @@
 window {
     location:		north east;
     anchor:		north east;
-    width:		24%;
+    width:		25%;
     x-offset:		-6;
     y-offset:		32;
     background-color: 	@background;
     border:           	3;
     border-radius:    	5;
     padding:          	10;
-    children: [month, listview];
-}
-month {
-    columns: 1;
-    lines: 1;
+    children: [listview];
 }
 listview {
     columns:	  7;
-    lines:	  7;
     cycle:	  true;
     dynamic:	  true;
     layout:	  vertical;
     flow:	  horizontal;
-    reverse:	  false;
-    fixed-height: true;
-    fixed-columns:true;
+    fixed-lines:  true;
     spacing:      2px ;
     scrollbar:    false;
 }

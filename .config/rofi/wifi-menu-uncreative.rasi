@@ -7,7 +7,7 @@
 @import "~/.config/rofi/colors.rasi"
 
 window {
-    width:		25.5%;
+    width:		28%;
     location:		north east;
     anchor:		north east;
     x-offset:		-100;

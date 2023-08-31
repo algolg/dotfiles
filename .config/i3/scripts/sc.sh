@@ -6,3 +6,4 @@ if [ "$focusedwindow" == "$(xdotool getactivewindow)" ]
 then
 		xdotool windowfocus $focusedwindow
 fi
+
