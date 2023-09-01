@@ -46,6 +46,10 @@ bindsym $mod+XF86AudioRaiseVolume exec playerctl next
 bindsym $mod+XF86AudioLowerVolume exec playerctl previous
 bindsym $mod+XF86AudioMute exec playerctl play-pause
 
+bindsym $mod+ctrl+Right exec playerctl next
+bindsym $mod+ctrl+Left exec playerctl previous
+bindsym $mod+ctrl+Down exec playerctl play-pause
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 

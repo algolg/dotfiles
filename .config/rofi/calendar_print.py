@@ -33,11 +33,11 @@ def main(month_adjust: int):
 
     output = ""
 
-    header = Months(month).name + str(year)[2::] + "       < >"
+    header = Months(month).name + str(year)[2::] + "     T < >"
     output = output + ( '\n'.join(wrap(header, 2, replace_whitespace=False, drop_whitespace=False)) )
 
     days = "SuMoTuWeThFrSa"
-    output = output + '\n' + ('\n'.join(wrap(days, 2, replace_whitespace=False, drop_whitespace=False)) )
+    output = output + '\n' + ('\n'.join(wrap(days, 2)) )
 
     calendar.setfirstweekday(calendar.SUNDAY)
     output = output + '\n' + ( '\n'.join(wrap(''.join(drop(list(calendar.month(int(year), int(month)).replace('\n', ' ').split("Sa")[1]), 3)), 2, replace_whitespace=False, drop_whitespace=False)) )
@@ -47,6 +47,7 @@ def main(month_adjust: int):
 def today_index():
     today = date.today().day
     cal = main(0).split('\n')[::-1]
+    cal = [i.strip() for i in cal]
     return len(cal) - cal.index(str(today)) - 1
 
 if __name__ == '__main__':

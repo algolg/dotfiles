@@ -51,5 +51,7 @@
     "editor.fontFamily": "CascadiaCode, SFMono-Regular, monospace",
     "editor.fontLigatures": true,
     "editor.fontSize": 12.5,
+    "terminal.external.linuxExec": "Alacritty",
+    "terminal.integrated.fontSize": 13,
 }
 

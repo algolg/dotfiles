@@ -61,7 +61,7 @@ font-4 = Hack Nerd Font:style=Regular:pixelsize=25;6
 #font-7 = Noto Sans Mono CJK HK:style=Regular:pixelsize=16;2
 
 modules-left = i3
-modules-center = now-playing
+#modules-center = now-playing
 modules-right = pulseaudio network battery date powermenu
 
 tray-position = right
