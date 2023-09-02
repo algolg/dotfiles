@@ -275,7 +275,6 @@ exec --no-startup-id pactl load-module module-x11-bell display=$DISPLAY
 # WALLPAPER
 exec_always --no-startup-id feh --bg-scale ~/.config/i3/bg/bg-4.png
 
-
 ##########################################################
 ##							##
 ##		      WINDOW CONFIGS			##
@@ -314,7 +313,7 @@ bindsym $mod+shift+z exec --no-startup-id firefox -P school
 bindsym $mod+ctrl+x exec --no-startup-id firefox --private-window
 bindsym $mod+e exec --no-startup-id thunar
 bindsym $mod+shift+e exec --no-startup-id gksu -E thunar
-bindsym $mod+c exec --no-startup-id run-or-raise code-oss code-oss
+bindsym $mod+c exec --no-startup-id run-or-raise codium codium
 # SCREENSHOTS
 bindsym $mod+ctrl+s exec --no-startup-id sh $HOME/.config/i3/scripts/sc.sh
 bindsym Print exec --no-startup-id sh $HOME/.config/i3/scripts/sc.sh

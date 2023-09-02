@@ -1,7 +1,6 @@
 #!/bin/bash
 
-if wmctrl -x -l | grep -q ".$1 "; then
-#	wmctrl -x -l | grep ".$1 " | awk 'NR==1{print $1}' | xargs wmctrl -i -a
+if wmctrl -x -l | grep -q $1; then
 	switch-to $1
 else
 	$1
