@@ -3,5 +3,5 @@
 if wmctrl -x -l | grep -q $1; then
 	switch-to $1
 else
-	$1
+	"${@: -1}"
 fi

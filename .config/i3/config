@@ -313,7 +313,7 @@ bindsym $mod+shift+z exec --no-startup-id firefox -P school
 bindsym $mod+ctrl+x exec --no-startup-id firefox --private-window
 bindsym $mod+e exec --no-startup-id thunar
 bindsym $mod+shift+e exec --no-startup-id gksu -E thunar
-bindsym $mod+c exec --no-startup-id run-or-raise codium codium
+bindsym $mod+c exec --no-startup-id run-or-raise vscodium codium
 # SCREENSHOTS
 bindsym $mod+ctrl+s exec --no-startup-id sh $HOME/.config/i3/scripts/sc.sh
 bindsym Print exec --no-startup-id sh $HOME/.config/i3/scripts/sc.sh
