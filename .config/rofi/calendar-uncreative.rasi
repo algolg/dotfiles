@@ -40,9 +40,10 @@ element-text {
     padding: 5;
     text-color:       @normal-foreground;
 }
+element-text.urgent {
+    text-color:       rgba(225, 225, 225, 40%);
+}
 element.urgent {
-    background-color: @urgent-background;
-    text-color:       @urgent-foreground;
 }
 element.active {
     border-color:     @active-foreground;
@@ -53,8 +54,8 @@ element.selected.normal {
     text-color:       @selected-normal-foreground;
 }
 element.selected.urgent {
-    background-color: @selected-urgent-background;
-    text-color:       @selected-urgent-foreground;
+    border-color: @alternate-normal-background;
+    text-color:       @selected-normal-foreground;
 }
 element.selected.active {
     background-color: @active-foreground;

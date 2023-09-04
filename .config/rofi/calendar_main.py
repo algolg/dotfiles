@@ -32,5 +32,6 @@ if show_cal:
     highlight = ""
     if adjust == 0:
         highlight = "-a \"" + str(calendar_print.today_index()) + "\""
-    call("echo -en \"" + string.replace('\n', "\\n") + "\"| rofi -dmenu -hover-select -me-select-entry '' -me-accept-entry MousePrimary -select '" + selection + "' -l " + str(lines) + " " + highlight + " -theme ~/.config/rofi/calendar-uncreative.rasi | xargs python3 ~/.config/rofi/calendar_main.py", shell=True)
+    unhighlight = calendar_print.not_this_month_indices(adjust)
+    call("echo -en \"" + string.replace('\n', "\\n") + "\"| rofi -dmenu -hover-select -me-select-entry '' -me-accept-entry MousePrimary -select '" + selection + "' -l " + str(lines) + " " + highlight + " " +  unhighlight + " -theme ~/.config/rofi/calendar-uncreative.rasi | xargs python3 ~/.config/rofi/calendar_main.py", shell=True)
 
