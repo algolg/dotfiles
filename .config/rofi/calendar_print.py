@@ -64,9 +64,10 @@ def main(month_adjust: int):
 
 def today_index():
     today = date.today().day
-    cal = main(0).split('\n')[::-1]
+    cal = main(0).split('\n')
     cal = [i.strip() for i in cal]
-    return len(cal) - cal.index(str(today)) - 1
+    month_start_index = cal.index('1', DAYS_START_AT)
+    return cal.index(str(today), month_start_index)
 
 def not_this_month_indices(adjust):
     output = []
