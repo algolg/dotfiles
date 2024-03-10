@@ -1,0 +1,41 @@
+[colors.bright]
+black = "#666666"
+blue = "#078be3"
+cyan = "#00d2ff"
+green = "#49d649"
+magenta = "#d24ced"
+red = "#ff3333"
+yellow = "#ffcc00"
+
+[colors.dim]
+cyan = "#a4e0ed"
+
+[colors.normal]
+black = "#222222"
+blue = "#55a4d9"
+cyan = "#73e6ff"
+green = "#76de76"
+magenta = "#d164e8"
+red = "#ff5555"
+white = "#cccccc"
+yellow = "#ffda54"
+
+[colors.primary]
+background = "#14181a"
+
+[font]
+size = 9.5
+
+[font.normal]
+family = "Consolas"
+
+[shell]
+program = "/bin/fish"
+
+[window]
+dynamic_title = true
+opacity = 0.8
+
+[window.padding]
+x = 25
+y = 25
