@@ -1,0 +1,91 @@
+{
+	"layer": "top",
+	"height": 20,
+	"spacing": 1,
+	"modules-left": ["hyprland/workspaces"],
+	"modules-right": ["tray", "pulseaudio", "network", "battery", "battery#bat2", "clock", "custom/powermenu"],
+
+	"tray": {
+		// "icon-size": 21,
+		"spacing": 10
+	},
+	"clock": {
+		"interval": 1,
+		"format": "{:%m-%d %I:%M:%S}",
+		"max-length": 25,
+		"on-click": "sleep 0.1 && python3 ~/.config/rofi/calendar_main.py 0"
+	},
+	"cpu": {
+		"format": "{usage}% ",
+		"tooltip": false
+	},
+	"backlight": {
+		// "device": "acpi_video1",
+		"format": "{percent}% {icon}",
+		"format-icons": ["", "", "", "", "", "", "", "", ""]
+	},
+	"battery": {
+		"states": {
+			// "good": 95,
+			"warning": 30,
+			"critical": 20
+		},
+                "interval": 10,
+		"format": "{icon} {capacity}%",
+		"format-charging": "󱐥 {capacity}%",
+		"format-plugged": "󱐥 {capacity}%",
+		"tooltip": "true",
+		"tooltop-format": "{time}",
+		// "format-good": "", // An empty format will hide the module
+		// "format-full": "",
+		"format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+	},
+	"battery#bat2": {
+		"bat": "BAT2"
+	},
+	"network": {
+		"format-wifi": "{essid} {icon}",
+		"format-ethernet": "{ipaddr}/{cidr}",
+		"tooltip-format-wifi": "{ifname} via {gwaddr}",
+		"tooltip-format-ethernet": "{ifname} via {gwaddr}",
+		"format-linked": "{ifname} (No IP)",
+		"format-disconnected": "disconnected 󰤭",
+                "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+                "on-click": "sleep 0.1 && sh ~/.config/waybar/scripts/rofi-wifi.sh",
+                "on-click-right": "sleep 0.1 && sh ~/.config/waybar/scripts/rofi-wifi.sh --toggle"
+	},
+	"pulseaudio": {
+		// "scroll-step": 1, // %, can be a float
+		"format": "{volume}% {icon}",
+		"format-muted": "{volume}% {icon}",
+		"format-source-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"default": ["", "", ""]
+		}
+	},
+	"pulseaudio-slider": {
+		"min": 0,
+		"max": 100,
+		"orientation": "horizontal"
+	},
+	"custom/media": {
+		"format": "{icon} {}",
+		"return-type": "json",
+		"max-length": 40,
+		"format-icons": {
+			"spotify": "",
+			"default": "🎜"
+		},
+		"escape": true,
+		"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+		// "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+	},
+        "custom/powermenu": {
+                "format": "⏻",
+                "tooltip": false,
+                "on-click": "sleep 0.1 && rofi -show power-menu -modi power-menu:rofi-power-menu -hover-select -me-select-entry '' -me-accept-entry MousePrimary -font \"NotoSansMono Nerd Font 13\" -theme ~/.config/rofi/power-menu-uncreative.rasi &"
+        }
+}
+
+/* vim:ft=jsonc

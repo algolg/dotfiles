@@ -158,6 +158,11 @@ endif
 colo ron_legacy
 set clipboard=unnamedplus
 
+set autoindent
+set smartindent
+set expandtab
+set shiftwidth=4
+
 call plug#begin()
 
 Plug 'https://github.com/elkowar/yuck.vim'

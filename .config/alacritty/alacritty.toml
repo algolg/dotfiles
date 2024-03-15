@@ -1,5 +1,5 @@
 [colors.bright]
-black = "#666666"
+black = "#ffffff"
 blue = "#078be3"
 cyan = "#00d2ff"
 green = "#49d649"
@@ -24,7 +24,7 @@ yellow = "#ffda54"
 background = "#14181a"
 
 [font]
-size = 9.5
+size = 12.5
 
 [font.normal]
 family = "Consolas"
@@ -34,7 +34,7 @@ program = "/bin/fish"
 
 [window]
 dynamic_title = true
-opacity = 0.8
+opacity = 0.75
 
 [window.padding]
 x = 25

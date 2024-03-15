@@ -1,0 +1,1 @@
+/home/akhilguntur/.config/i3/scripts/thunar_launch.sh
