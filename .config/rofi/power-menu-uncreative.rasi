@@ -11,7 +11,7 @@ window {
     location:		north east;
     anchor:		north east;
     x-offset:		-6;
-    y-offset:		32;
+    y-offset:		0;
     background-color: 	@background;
     border:           	3;
     border-radius:    	5;

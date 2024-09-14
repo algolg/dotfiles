@@ -7,7 +7,9 @@ elif [[ -z "$1" ]] || [ "$(hyprctl activewindow -j | jq '.class' | tr -d '\"')" 
     desired_window_class=$(hyprctl activewindow -j | jq '.class')
     current_window_address=$(hyprctl activewindow -j | jq '.address')
     hyprctl dispatch focuswindow "address:"$(hyprctl clients -j | jq ".[] | select(.class==${desired_window_class}) | .address" | jq -n "[inputs] | .[ (index(${current_window_address})+1) % length]" | tr -d '"')
+    hyprctl dispatch alterzorder top
 else
     hyprctl dispatch focuswindow $1
+    hyprctl dispatch alterzorder top
 fi
 

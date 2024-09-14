@@ -1,8 +1,12 @@
 #!/bin/bash
 
-
 if [[ -z "$1" ]]; then
-	SSID=$(nmcli -t -f active,ssid,bars dev wifi | sed 's/no/ */' | sed 's/yes/CON/' > temp && column -s ":" -t temp | awk '!($2 ~ /▂/)' | rofi -i -dmenu -hover-select -me-select-entry '' -me-accept-entry MousePrimary -theme wifi-menu-uncreative -font "Consolas 14" | awk '{for (i=2;i<NF-1;i++) printf $i" "; print $(NF-1)}')
+        nmcli -t -f active,bars,ssid dev wifi > temp
+        current=$(grep -v ':$' temp | grep -n -m 1 "yes:" | sed 's/:/ /g' | awk '{print $1}')
+        if [[ -n $current ]]; then
+            current="-a $(($current-1))"
+        fi
+	SSID=$(column -s ":" -t temp --table-hide 1 | awk 'NF > 1' | rofi $current -i -dmenu -hover-select -me-select-entry '' -me-accept-entry MousePrimary -theme wifi-menu-uncreative -font "Consolas 14" | awk '{for (i=2;i<NF;i++) printf $i" "; print $NF}')
 	rm temp
 	response=$(nmcli dev wifi connect "$SSID" 2>&1)
 	echo $response

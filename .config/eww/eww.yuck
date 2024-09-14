@@ -1,0 +1,94 @@
+(defwindow dropdown [x y list]
+  :namespace "eww-dropdown"
+  :monitor 0
+  :orientation "v"
+  :focusable false
+  :geometry (geometry
+              :x    "${x}px"
+              :y    "${y}px"
+              :anchor "top right"
+            )
+  :class "dropdown"
+  (box
+    (menulist :list list :truncate false)
+  )
+)
+
+(defwindow  timecal-dropdown [x y]
+  :namespace "eww-dropdown"
+  :monitor 0
+  :focusable false
+  :geometry (geometry
+              :x    "${x}px"
+              :y    "${y}px"
+              :anchor "top right"
+            )
+  (box
+    :orientation "v"
+    (calendar :class "timecal-calendar")
+  )
+  
+)
+
+(defpoll networks-list :interval "15s"
+                       :initial "{}"
+  `sh ~/.config/eww/scripts/wifi-search`
+)
+(defwindow networks-dropdown [x y]
+  :namespace "eww-dropdown"
+  :monitor 0
+  :orientation "v"
+  :focusable false
+  :geometry (geometry
+              :x    "${x}px"
+              :y    "${y}px"
+              :anchor "top right"
+            )
+  :class "dropdown"
+  (box
+    :orientation "v"
+    :space-evenly false
+    (box
+      :orientation "h"
+      :class "networks-options"
+      :space-evenly true
+      (eventbox
+        :class "networks-option-box"
+        :cursor "pointer"
+        :onclick "sh ~/.config/eww/scripts/open-dropdown networks toggle"
+        (label :class "networks-option" :text "Toggle WiFi")
+      )
+      (eventbox
+        :class "networks-option-box"
+        :cursor "pointer"
+        (label :class "networks-option" :text "Airplane Mode")
+      )
+    )
+    (scroll
+      :height "400"
+      :hscroll false
+      :vscroll true
+      :class "networks-list"
+      :hexpand false
+      (menulist :list networks-list :truncate true)
+    )
+  )
+)
+
+(defwidget menulist [list ?truncate]
+  (box
+    :orientation "v"
+    (for item in list
+      (eventbox
+        :onclick "${item.command}"
+        :class "dropdown-option-box"
+        :cursor "pointer"
+        (label :text "${item.name}"
+               :class "dropdown-option ${item.classes}"
+               :xalign 0
+               :truncate truncate
+        )
+      )
+    )
+  )
+)

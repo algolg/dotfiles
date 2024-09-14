@@ -1,0 +1,68 @@
+{
+    "main": [
+        {
+            "name": "Shutdown",
+            "command": "sh ~/.config/eww/scripts/open-dropdown powermenu shutdown"
+        },
+        {
+            "name": "Reboot",
+            "command": "sh ~/.config/eww/scripts/open-dropdown powermenu reboot"
+        },
+        {
+            "name": "Suspend",
+            "command": "systemctl suspend"
+        },
+        {
+            "name": "Hibernate",
+            "command": "sh ~/.config/eww/scripts/open-dropdown powermenu hibernate"
+        },
+        {
+            "name": "Log out",
+            "command": "sh ~/.config/eww/scripts/open-dropdown powermenu logout"
+        },
+        {
+            "name": "Lock screen",
+            "command": "loginctl lock-session"
+        }
+    ],
+    "shutdown": [
+        {
+            "name": "Yes, shut down",
+            "command": "systemctl poweroff"
+        },
+        {
+            "name": "No, don't shut down",
+            "command": "eww close powermenu && eww update powermenu-selected=false"
+        }
+    ],
+    "reboot": [
+        {
+            "name": "Yes, reboot",
+            "command": "systemctl reboot"
+        },
+        {
+            "name": "No, don't reboot",
+            "command": "eww close powermenu && eww update powermenu-selected=false"
+        }
+    ],
+    "hibernate": [
+        {
+            "name": "Yes, hibernate",
+            "command": "systemctl hibernate"
+        },
+        {
+            "name": "No, don't hibernate",
+            "command": "eww close powermenu && eww update powermenu-selected=false"
+        }
+    ],
+    "logout": [
+        {
+            "name": "Yes, log out",
+            "command": "hyprctl dispatch exit 1"
+        },
+        {
+            "name": "No, don't log out",
+            "command": "eww close powermenu && eww update powermenu-selected=false"
+        }
+    ]
+}

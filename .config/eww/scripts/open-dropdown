@@ -1,0 +1,57 @@
+#!/bin/bash
+
+if [[ -z $2 ]] && eww active-windows | grep -q "dropdown"; then
+    current=$(eww active-windows | grep "dropdown" | awk -F: '{print $1}')
+    eww close $current
+#    eww update "${current}-selected"=false
+    if [[ -z $1 ]] || [[ $1 == $current ]]; then
+        exit 1
+    fi
+fi
+
+if [[ -z $1 ]]; then
+    echo "error: no menu specified"
+elif [[ $1 == "powermenu" ]]; then
+    x=4
+    y=0
+    case $2 in
+        "shutdown"|"reboot"|"hibernate"|"logout")
+            list=$(jq .$2 ~/.config/eww/scripts/powermenu.json -Mc)
+            ;;
+        *)
+            list=$(jq .main ~/.config/eww/scripts/powermenu.json -Mc)
+            ;;
+    esac
+#    eww update "${1}-selected"=true
+    eww open dropdown --arg x=$x --arg y=$y --arg list="$list" --id "powermenu"
+
+elif [[ $1 == "networks" ]]; then
+    if [[ $2 == "select" ]]; then
+        eww close networks
+        response=$(nmcli dev wifi connect "${@:3}")
+        if [[ "$response" =~ "Secrets were required" ]]; then
+            PASS=$(echo "Password Needed" | rofi -dmenu -password -theme wifi-menu-uncreative -font "Consolas 14")
+            nmcli dev wifi connect "$SSID" password $PASS
+        fi
+#        eww update "${1}-selected"=false
+        exit 1
+    elif [[ "$2" == "toggle" ]]; then
+        if nmcli radio wifi | grep -q "enabled"; then
+                nmcli radio wifi off
+                notify-send --icon /usr/share/icons/Fancy-Dark-Icons/actions/24/network-disconnect.svg "Wi-Fi Disabled" "nmcli radio wifi off"
+        else
+                nmcli radio wifi on		
+                notify-send --icon /usr/share/icons/Fancy-Dark-Icons/actions/24/network-connect.svg "Wi-Fi Enabling" "nmcli radio wifi on"
+        fi
+#        eww update "${1}-selected"=false
+        exit 1
+    fi
+    x=303
+    y=0
+#    eww update "${1}-selected"=true
+    eww open networks-dropdown --arg x=$x --arg y=$y --id "networks"
+elif [[ $1 == "timecal" ]]; then
+    x=45
+    y=0
+    eww open timecal-dropdown --arg x=$x --arg y=$y --id "timecal"
+fi

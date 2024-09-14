@@ -155,6 +155,9 @@ if has('langmap') && exists('+langremap')
   set nolangremap
 endif
 
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+
 colo ron_legacy
 set clipboard=unnamedplus
 
@@ -163,10 +166,13 @@ set smartindent
 set expandtab
 set shiftwidth=4
 
+" :PlugInstall will install new plugins
 call plug#begin()
 
 Plug 'https://github.com/elkowar/yuck.vim'
 Plug 'vim-scripts/c.vim'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'sindrets/diffview.nvim'
 

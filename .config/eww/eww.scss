@@ -1,0 +1,100 @@
+$background:        rgba(68, 68, 68, 0.2);
+$background-alt:    rgba(68, 68, 108, 0.25);
+$background-hl:     rgba(145, 168, 211, 1.0);
+$background-menu:   rgba(168, 168, 168, 0.35);
+$foreground:        rgba(34, 34, 34, 1.0);
+$foreground-alt:    rgba(50, 73, 200, 1.0);
+
+$red:     rgba(255, 51, 51, 1.0);
+$yellow:  rgba(255, 204, 0, 1.0);
+$green:   rgba(22, 158, 30, 1.0);
+$blue:    rgba(90, 129, 201, 1.0);
+$alert:   rgba(213, 78, 83, 1.0);
+
+* {
+    font-family: BlexMono Nerd Font Propo;
+    font-size: 19px;
+}
+
+.bar, .background {
+    color: $foreground;
+    background: transparent;
+    margin: 0 4px;
+}
+
+.workspace-entry {
+    margin: 4px 2px;
+    padding: 0 14px;
+    border-radius: 5px;
+    background: transparent;
+}
+
+.current {
+    background-color: $background-alt;
+}
+
+.widgets-right .widget {
+    border-radius: 5px;
+    background-color: $background-alt;
+    padding: 0 10px;
+    margin: 4px 0 4px 5px;
+}
+
+.powermenu {
+  padding: 2px 10px;
+  margin-right: 3px;
+}
+.powermenu-parent:hover > .powermenu,
+.networks-parent:hover > .networks,
+.selected > .widget {
+    background-color: $blue;
+}
+
+.dropdown,
+.networks-dropdown {
+  background-color: $background-menu;
+  border-radius: 5px;
+  border: 2px solid $background-alt;
+  padding: 7px 10px;
+}
+
+.timecal-calendar {
+  @extend .dropdown;
+  padding: 7px;
+  color: $foreground;
+}
+.other-month {
+  color: #eee;
+}
+
+.dropdown-option {
+  transition: background-color 0.1s;
+  background-color: $background-alt;
+  border-radius: 3px;
+  margin: 3px 0;
+  padding: 7px 15px 7px 7px;
+  min-width: 165px;
+}
+
+.dropdown-option.active {
+  color: $foreground-alt;
+}
+
+.networks-list {
+  border-top: 3px solid $background-alt;
+  padding: 0 3px;
+}
+
+.networks-option {
+  transition: background-color 0.1s;
+  background-color: $background-hl;
+  border-radius: 3px;
+  min-width: 170px;
+  padding: 3px;
+  margin: 3px;
+}
+
+.dropdown-option-box:hover > .dropdown-option,
+.networks-option-box:hover > .networks-option {
+  background-color: $blue;
+}

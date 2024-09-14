@@ -4,7 +4,9 @@
 	"spacing": 1,
 	"modules-left": ["hyprland/workspaces"],
 	"modules-right": ["tray", "pulseaudio", "network", "battery", "battery#bat2", "clock", "custom/powermenu"],
-
+        
+        "hyprland/workspaces":{
+        },
 	"tray": {
 		// "icon-size": 21,
 		"spacing": 10
@@ -13,7 +15,7 @@
 		"interval": 1,
 		"format": "{:%m-%d %I:%M:%S}",
 		"max-length": 25,
-		"on-click": "sleep 0.1 && python3 ~/.config/rofi/calendar_main.py 0"
+		"on-click": "sleep 0.1 && sh ~/.config/eww/scripts/open-dropdown timecal"
 	},
 	"cpu": {
 		"format": "{usage}% ",
@@ -51,8 +53,8 @@
 		"format-linked": "{ifname} (No IP)",
 		"format-disconnected": "disconnected 󰤭",
                 "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-                "on-click": "sleep 0.1 && sh ~/.config/waybar/scripts/rofi-wifi.sh",
-                "on-click-right": "sleep 0.1 && sh ~/.config/waybar/scripts/rofi-wifi.sh --toggle"
+                "on-click": "sleep 0.1 && sh ~/.config/eww/scripts/open-dropdown networks",
+                "on-click-right": "sleep 0.1 && sh ~/.config/eww/scripts/open-dropdown networks toggle"
 	},
 	"pulseaudio": {
 		// "scroll-step": 1, // %, can be a float
@@ -84,7 +86,7 @@
         "custom/powermenu": {
                 "format": "⏻",
                 "tooltip": false,
-                "on-click": "sleep 0.1 && rofi -show power-menu -modi power-menu:rofi-power-menu -hover-select -me-select-entry '' -me-accept-entry MousePrimary -font \"NotoSansMono Nerd Font 13\" -theme ~/.config/rofi/power-menu-uncreative.rasi &"
+                "on-click": "sleep 0.1 && sh ~/.config/eww/scripts/open-dropdown powermenu"
         }
 }
 

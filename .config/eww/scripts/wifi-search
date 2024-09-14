@@ -1,0 +1,4 @@
+#!/bin/bash
+
+nmcli -t -f active,signal,ssid dev wifi | jq -R 'split(":") |  .[1] = (if (.[1]|tonumber) > 80 then "󰤨" elif (.[1]|tonumber) > 60 then "󰤥" elif (.[1]|tonumber) > 40 then "󰤢" elif (.[1]|tonumber) > 20 then "󰤟" else "󰤯" end) | if .[2] != "" then {"name": "\(.[1]) \(.[2])","command": "sh ~/.config/eww/scripts/open-dropdown networks select \(.[2]) &", "classes": (if .[0] == "yes" then "active" else "" end)} else empty end' | jq -Mc --slurp '.'
+

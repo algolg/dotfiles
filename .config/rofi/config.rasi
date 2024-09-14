@@ -1,8 +1,7 @@
 configuration {
-	modi: "window,drun,ssh,combi,recent:rofi-recent -e \"thunar firefox\"";
+	modi: "window,drun,ssh,combi,recent:rofi-recent -e \"Thunar thunar firefox\"";
 	combi-modi: "drun,recent";
-/*	font: "Consolas Bold 16";*/
-	font: "Consolas 16";
+	font: "BlexMono Nerd Font 17";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
