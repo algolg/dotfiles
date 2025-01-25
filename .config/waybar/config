@@ -3,7 +3,7 @@
 	"height": 20,
 	"spacing": 1,
 	"modules-left": ["hyprland/workspaces"],
-	"modules-right": ["tray", "pulseaudio", "network", "battery", "battery#bat2", "clock", "custom/powermenu"],
+	"modules-right": ["tray", "pulseaudio", /* "network",*/ "battery", "battery#bat2", "clock", "custom/powermenu"],
         
         "hyprland/workspaces":{
         },
@@ -54,7 +54,7 @@
 		"format-disconnected": "disconnected 󰤭",
                 "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
                 "on-click": "sleep 0.1 && sh ~/.config/eww/scripts/open-dropdown networks",
-                "on-click-right": "sleep 0.1 && sh ~/.config/eww/scripts/open-dropdown networks toggle"
+                "on-click-right": "sleep 0.1 && sh ~/.config/eww/scripts/open-dropdown networks offon"
 	},
 	"pulseaudio": {
 		// "scroll-step": 1, // %, can be a float

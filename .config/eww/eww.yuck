@@ -92,3 +92,61 @@
     )
   )
 )
+
+
+(defpoll sections
+  :interval "30s"
+  :initial '[{"name":"today","tasks":[]},{"name":"for later","tasks":[]},{"name":"don\'t forget","tasks":[]},{"name":"personal","tasks":[]}]'
+  `python3 ~/.config/eww/scripts/get-tasks.py`
+)
+(defwindow tasks
+  :namespace "eww-tasks"
+  :monitor 0
+  :focusable false
+  :valign "start"
+  :stacking "bg"
+  :geometry (geometry
+              :x    "75px"
+              :y    "80px"
+              :anchor "top right"
+            )
+  :class "tasks"
+  (box
+    :orientation "h"
+    :width "1400"
+    :vexpand "true"
+    :space-evenly "true"
+    (for section in sections
+      (box
+        :orientation "v"
+        :class "section"
+        :space-evenly "false"
+        (label :class "section-name"
+               :text "${section.name}"
+               :valign "start"
+        )
+        (box
+          :class "task-holder"
+          :orientation "v"
+          :space-evenly "false"
+          :valign "start"
+          (for task in {section.tasks}
+            (box
+              :class "task"
+              :orientation "v"
+              :width "300"
+              (label :text "${task.content}"
+                     :class "task-text ${task.due == "null" ? 'task-margin-bottom' : ''}"
+                     :wrap "true"
+              )
+              (label :text "${task.due}"
+                     :class "task-due task-margin-bottom"
+                     :visible {task.due != "null"}
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)

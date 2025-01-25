@@ -1,0 +1,46 @@
+{
+	"layer": "top",
+        "position": "bottom",
+	"height": 10,
+	"spacing": 1,
+	"modules-left": ["hyprland/workspaces"],
+	"modules-right": ["pulseaudio", "battery", "battery#bat2", "clock"],
+        
+        "hyprland/workspaces":{
+        },
+	"clock": {
+		"interval": 1,
+		"format": "{:%m-%d %I:%M}",
+		"max-length": 25
+	},
+	"battery": {
+		"states": {
+			// "good": 95,
+			"warning": 30,
+			"critical": 20
+		},
+                "interval": 10,
+		"format": "{icon} {capacity}%",
+		"format-charging": "󱐥 {capacity}%",
+		"format-plugged": "󱐥 {capacity}%",
+		"tooltip": "true",
+		"tooltop-format": "{time}",
+		// "format-good": "", // An empty format will hide the module
+		// "format-full": "",
+		"format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+	},
+	"battery#bat2": {
+		"bat": "BAT2"
+	},
+	"pulseaudio": {
+		"format": "{volume}% {icon}",
+		"format-muted": "{volume}% {icon}",
+		"format-source-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"default": ["", "", ""]
+		}
+	}
+}
+
+/* vim:ft=jsonc

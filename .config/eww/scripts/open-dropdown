@@ -29,7 +29,7 @@ elif [[ $1 == "networks" ]]; then
     if [[ $2 == "select" ]]; then
         eww close networks
         response=$(nmcli dev wifi connect "${@:3}")
-        if [[ "$response" =~ "Secrets were required" ]]; then
+        if [[ "$response" == *"Secrets were required"* ]]; then
             PASS=$(echo "Password Needed" | rofi -dmenu -password -theme wifi-menu-uncreative -font "Consolas 14")
             nmcli dev wifi connect "$SSID" password $PASS
         fi
@@ -44,6 +44,10 @@ elif [[ $1 == "networks" ]]; then
                 notify-send --icon /usr/share/icons/Fancy-Dark-Icons/actions/24/network-connect.svg "Wi-Fi Enabling" "nmcli radio wifi on"
         fi
 #        eww update "${1}-selected"=false
+        exit 1
+    elif [[ "$2" == "offon" ]]; then
+        nmcli radio wifi off
+        nmcli radio wifi on
         exit 1
     fi
     x=303

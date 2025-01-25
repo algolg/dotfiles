@@ -1,9 +1,11 @@
 $background:        rgba(68, 68, 68, 0.2);
 $background-alt:    rgba(68, 68, 108, 0.25);
 $background-hl:     rgba(145, 168, 211, 1.0);
+$background-hl-t:   rgba(125, 143, 201, 0.25);
 $background-menu:   rgba(168, 168, 168, 0.35);
 $foreground:        rgba(34, 34, 34, 1.0);
 $foreground-alt:    rgba(50, 73, 200, 1.0);
+$foreground-sub:    rgba(7, 81, 111, 1.0);
 
 $red:     rgba(255, 51, 51, 1.0);
 $yellow:  rgba(255, 204, 0, 1.0);
@@ -97,4 +99,30 @@ $alert:   rgba(213, 78, 83, 1.0);
 .dropdown-option-box:hover > .dropdown-option,
 .networks-option-box:hover > .networks-option {
   background-color: $blue;
+}
+
+.section {
+  margin: 5px;
+}
+.section-name {
+  border-radius: 3px;
+  background-color: $background-hl-t;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+}
+.task {
+  border-radius: 3px;
+  background-color: $background;
+  padding: 10px 20px 0 20px;
+  margin: 5px 0;
+}
+.task-due {
+  color: $foreground-sub;
+  font-size: 15px;
+}
+.task-margin-bottom {
+  margin-bottom: 10px;
+}
+.task-due.task-margin-bottom {
+  margin-bottom: 3px;
 }
